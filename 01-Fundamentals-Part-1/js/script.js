@@ -161,3 +161,23 @@
 
 // const averageAge = (ageRenan + ageSarah) / 2;
 // console.log(ageRenan, ageSarah, averageAge);
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE #1
+//////////////////////////
+const markHeight = 1.88;
+const markWeight = 95;
+const markBMI = markWeight / (markHeight**2);
+
+const johnHeight = 1.76;
+const johnWeight = 85;
+const johnBMI = johnWeight / (johnHeight**2);
+
+const markHigherBMI = markBMI > johnBMI;
+
+console.log(markBMI, johnBMI);
+console.log(markHigherBMI);
