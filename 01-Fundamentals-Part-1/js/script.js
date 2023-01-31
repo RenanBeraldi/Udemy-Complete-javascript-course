@@ -42,36 +42,60 @@
 
 
 
-//////////////////////////
-// DATA TYPES
-//////////////////////////
 
-// BOOLEAN
-let javascriptIsFun = true;
-console.log(javascriptIsFun);
+// //////////////////////////
+// // DATA TYPES
+// //////////////////////////
 
-
-
-// UNDEFINED
-let year;
-console.log(year);
-console.log(typeof year)
-// an undefined variable can be reassigned
-year = 1991;
-console.log(year);
-console.log(typeof year)
+// // BOOLEAN
+// let javascriptIsFun = true;
+// console.log(javascriptIsFun);
 
 
+// // UNDEFINED
+// let year;
+// console.log(year);
+// console.log(typeof year)
+// // an undefined variable can be reassigned
+// year = 1991;
+// console.log(year);
+// console.log(typeof year)
 
-// OPERATOR typeof
-console.log(typeof true);
-console.log(typeof javascriptIsFun);
-console.log(typeof 23);
-console.log(typeof 'Renan');
+
+// // OPERATOR typeof
+// console.log(typeof true);
+// console.log(typeof javascriptIsFun);
+// console.log(typeof 23);
+// console.log(typeof 'Renan');
+
+
+// // DYNAMIC TYPING
+// javascriptIsFun = 'YES!';
+// console.log(javascriptIsFun);
+// console.log(typeof javascriptIsFun)
 
 
 
-// DYNAMIC TYPING
-javascriptIsFun = 'YES!';
-console.log(javascriptIsFun);
-console.log(typeof javascriptIsFun)
+
+
+// //////////////////////////
+// // LET, CONST and VAR
+// //////////////////////////
+
+// // LET
+// // can be changed in the future
+// let age = 30;
+// age = 31;
+
+
+// // CONST
+// // cannot be changed in the future
+// const birthYear = 1991;
+// // birthYear = 1990;
+// // const job;
+
+
+// // VAR
+// // can be changed in the future
+// var job = 'programmer';
+// job = 'teacher';
