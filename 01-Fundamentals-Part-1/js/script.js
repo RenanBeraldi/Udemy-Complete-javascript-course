@@ -109,34 +109,55 @@
 //////////////////////////
 
 // Math operators 
-const now = 2037;
-const ageRenan = now - 2002;
-const ageSarah = now - 2020;
-console.log(ageRenan, ageSarah)
+// const now = 2037;
+// const ageRenan = now - 2002;
+// const ageSarah = now - 2020;
+// console.log(ageRenan, ageSarah)
 
-console.log(ageRenan * 2, 
-    ageRenan / 10,  
-    2 ** 3); // 2 ** 3 means 2 to the power of 3 = 2 * 2 * 2
+// console.log(ageRenan * 2, 
+//     ageRenan / 10,  
+//     2 ** 3); // 2 ** 3 means 2 to the power of 3 = 2 * 2 * 2
 
-const firstName = 'Renan';
-const lastName = 'Beraldi'
-console.log(firstName + ' ' + lastName);
-
-
-// Assignment operators
-let x = 10 + 5; //15
-x += 10; // x = x + 10 = 25
-x *= 4; // x = x * 4 = 100
-x++; // x = x + 1 = 101
-x--;
-x--; // x = x - 1 = 99
-console.log(x);
+// const firstName = 'Renan';
+// const lastName = 'Beraldi'
+// console.log(firstName + ' ' + lastName);
 
 
-// Comparison operators
-// >, <, <=, >=
-console.log(ageRenan > ageSarah);
-const isFullAge = ageSarah >= 18;
-console.log(isFullAge);
+// // Assignment operators
+// let x = 10 + 5; //15
+// x += 10; // x = x + 10 = 25
+// x *= 4; // x = x * 4 = 100
+// x++; // x = x + 1 = 101
+// x--;
+// x--; // x = x - 1 = 99
+// console.log(x);
 
-console.log(now - 2002 > now - 2018);
+
+// // Comparison operators
+// // >, <, <=, >=
+// console.log(ageRenan > ageSarah);
+// const isFullAge = ageSarah >= 18;
+// console.log(isFullAge);
+
+// console.log(now - 2002 > now - 2018);
+
+
+
+
+
+//////////////////////////
+// OPERATOR PRECEDENCE
+//////////////////////////
+// const now = 2037;
+// const ageRenan = now - 2002;
+// const ageSarah = now - 2020;
+
+// console.log(now - 2002 > now - 2018);
+
+// let x, y;
+// x = y = 25-10-5;
+// console.log(x, y);
+
+
+// const averageAge = (ageRenan + ageSarah) / 2;
+// console.log(ageRenan, ageSarah, averageAge);
