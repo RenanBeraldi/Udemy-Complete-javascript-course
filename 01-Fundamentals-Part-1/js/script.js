@@ -212,3 +212,28 @@
 // console.log(`String with
 // multiple
 // lines`);
+
+
+
+
+
+//////////////////////////
+// IF / ELSE
+//////////////////////////
+// const age = 15;
+// const isOldEnough = age >= 18;
+// if(isOldEnough){
+//     console.log("You're able to take your drivers license!");
+// } else{
+//     const yearsLeft = 18-age;
+//     console.log(`You're too young. Wait more ${yearsLeft} years`);
+// };
+
+
+// const birthYear = 2002;
+// let century;
+// if (birthYear >= 2001){
+//     century = 21;
+// } else{
+//     century = 20;
+// };
