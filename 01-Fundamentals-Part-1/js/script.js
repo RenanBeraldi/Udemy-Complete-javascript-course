@@ -266,3 +266,32 @@
 // } else{
 //     console.log(`An inexpected error has been occurred!!!`)
 // };
+
+
+
+
+
+//////////////////////////
+// TYPE CONVERSION AND COERCION
+//////////////////////////
+
+// MANUAL CONVERSION
+// Function Number()
+const inputYear = "1991";
+console.log(Number(inputYear));
+
+console.log(Number("Renan")); // NaN Value
+
+// Function String()
+console.log(String(23))
+
+
+// AUTOMATIC COERCION
+console.log('I am ' + 23 + ' years old');
+console.log('I am ' + String(23) + ' years old');
+
+console.log('23'-'10'-3);
+
+let n = '1' + 1;
+n = n - 1;
+console.log(n);
