@@ -169,15 +169,46 @@
 //////////////////////////
 // CODING CHALLENGE #1
 //////////////////////////
-const markHeight = 1.88;
-const markWeight = 95;
-const markBMI = markWeight / (markHeight**2);
+// const markHeight = 1.88;
+// const markWeight = 95;
+// const markBMI = markWeight / (markHeight**2);
 
-const johnHeight = 1.76;
-const johnWeight = 85;
-const johnBMI = johnWeight / (johnHeight**2);
+// const johnHeight = 1.76;
+// const johnWeight = 85;
+// const johnBMI = johnWeight / (johnHeight**2);
 
-const markHigherBMI = markBMI > johnBMI;
+// const markHigherBMI = markBMI > johnBMI;
 
-console.log(markBMI, johnBMI);
-console.log(markHigherBMI);
+// console.log(markBMI, johnBMI);
+// console.log(markHigherBMI);
+
+
+
+
+
+//////////////////////////
+// STRINGS and TEMPLATES LITERALS
+//////////////////////////
+
+// const firstName = 'Renan';
+// const job = 'Programmer';
+// const birthYear = 2002;
+// const year = 2023;
+
+// const user = "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+// console.log(user);
+
+// const newUser = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+// console.log(newUser);
+
+// console.log(`Just a regular string`);
+
+// // If wanted a multiline before ES6
+// console.log('String with \n\
+// multiple \n\
+// lines');
+
+// // And now
+// console.log(`String with
+// multiple
+// lines`);
