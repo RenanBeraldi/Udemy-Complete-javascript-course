@@ -237,3 +237,32 @@
 // } else{
 //     century = 20;
 // };
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE #2
+//////////////////////////
+// const markHeight = 1.88;
+// const markWeight = 95;
+// const markBMI = markWeight / (markHeight**2);
+
+// const johnHeight = 1.76;
+// const johnWeight = 85;
+// const johnBMI = johnWeight / (johnHeight**2);
+
+// const markHigherBMI = markBMI > johnBMI;
+// const markHigherMSG = `Mark's BMI (${markBMI}) is higher than John's (${johnBMI})`;
+
+// const johnHigherBMI = johnBMI > markBMI;
+// const johnHigherMSG = `John's BMI (${johnBMI}) is higher than Mark's (${markBMI})`;
+
+// if(markHigherBMI){
+//     console.log(markHigherMSG);
+// } else if (johnHigherBMI){
+//     console.log(johnHigherMSG);
+// } else{
+//     console.log(`An inexpected error has been occurred!!!`)
+// };
