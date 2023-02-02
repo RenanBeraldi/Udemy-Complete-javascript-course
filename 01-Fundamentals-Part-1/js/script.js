@@ -277,21 +277,53 @@
 
 // MANUAL CONVERSION
 // Function Number()
-const inputYear = "1991";
-console.log(Number(inputYear));
+// const inputYear = "1991";
+// console.log(Number(inputYear));
 
-console.log(Number("Renan")); // NaN Value
+// console.log(Number("Renan")); // NaN Value
 
-// Function String()
-console.log(String(23))
+// // Function String()
+// console.log(String(23))
 
 
-// AUTOMATIC COERCION
-console.log('I am ' + 23 + ' years old');
-console.log('I am ' + String(23) + ' years old');
+// // AUTOMATIC COERCION
+// console.log('I am ' + 23 + ' years old');
+// console.log('I am ' + String(23) + ' years old');
 
-console.log('23'-'10'-3);
+// console.log('23'-'10'-3);
 
-let n = '1' + 1;
-n = n - 1;
-console.log(n);
+// let n = '1' + 1;
+// n = n - 1;
+// console.log(n);
+
+
+
+
+
+//////////////////////////
+// TRUTHY AND FALSY VALUES
+//////////////////////////
+
+// 5 falsy values: 
+// 0, '', Undefined, Null, NaN
+
+// console.log(Boolean(0));
+// console.log(Boolean(undefined));
+// console.log(Boolean("Jonas"));
+// console.log(Boolean({}));
+// console.log(Boolean(""));
+
+// const money = 100;
+// if(money){
+//     console.log("Don't spend it all");
+// } else {
+//     console.log("You should get a job!");
+// }
+
+
+// let height = 1.72;
+// if(height){
+//     console.log("Height is defined");
+// } else {
+//     console.log("Height is UNDEFINED");
+// }
