@@ -391,3 +391,28 @@
 // } else {
 //     console.log("Sarah is able to drive!");
 // }
+
+
+
+
+
+//////////////////////////
+// Coding Challenge #3
+//////////////////////////
+const dolphinsScoreAvg = (97+112+101) / 3;
+const koalasScoreAvg = (109+95+106) / 3;
+const minimumScore = 100;
+
+
+console.log(`Average Dolphins Score: ${dolphinsScoreAvg}`);
+console.log(`Averaga Koalas Score: ${koalasScoreAvg}`);
+
+if (dolphinsScoreAvg, koalasScoreAvg <= minimumScore){
+    console.log(`Both teams didn't get the minimum score of ${minimumScore} Therefore there is a draw!`);
+} else if (dolphinsScoreAvg === koalasScoreAvg){
+    console.log("There is a draw between the teams");
+} else if (dolphinsScoreAvg >= minimumScore && dolphinsScoreAvg > koalasScoreAvg) {
+    console.log("Dolphins are the winner of the competition! Congratulations!");
+} else if(koalasScoreAvg >= minimumScore && koalasScoreAvg > dolphinsScoreAvg) {
+    console.log("Koalas are the winner of the competition! Congratulations!");
+}
