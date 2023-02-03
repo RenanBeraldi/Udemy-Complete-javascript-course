@@ -468,3 +468,33 @@
 
 
 
+//////////////////////////
+// THE CONDITIONAL (TERNARY) OPERATOR
+//////////////////////////
+// const age = 23;
+// age >= 18 ? console.log("I like to drink wine") : console.log("I like to drink water");
+
+// const drink = age >= 18 ? "Wine" : "Water";
+// console.log(`Drink 1: ${drink}`); 
+
+// let drink2;
+// if(age >= 18){
+//     drink2 = "Wine";
+// } else {
+//     drink2 = "Water";
+// }
+// console.log(`Drink 2: ${drink2}`)
+
+// console.log(`I like to drink ${age >= 18 ? "Wine" : "Water"}`);
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE #4
+//////////////////////////
+const bill = 275;
+
+const tip = bill >= 50 && bill <= 300 ? bill*0.15 : bill*0.2;
+console.log(`The bill is $${bill}, the tip is $${tip}, and the total value is $${bill+tip}`)
