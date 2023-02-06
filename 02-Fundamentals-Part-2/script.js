@@ -19,23 +19,42 @@
 //////////////////////////
 // FUNCTION
 //////////////////////////
-function logger(){
-    console.log("My name is Renan");
+// function logger(){
+//     console.log("My name is Renan");
+// }
+
+// // calling / running / involking function
+// logger();
+// logger();
+// logger();
+
+// function fruitProcessor(apples, oranges) {
+//     const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
+//     return juice;
+// }
+
+// const appleJuice = fruitProcessor(5, 0);
+// console.log(appleJuice);
+// // console.log(fruitProcessor(5, 0));
+
+// const appleOrangeJuice = fruitProcessor(2, 4);
+// console.log(appleOrangeJuice); 
+
+
+
+
+
+//////////////////////////
+// FUNCTION DECLARATIONS VS. EXPRESSIONS
+//////////////////////////
+function calcAge1(birthYear){ //DECLARATION
+    return 2023 - birthYear;
 }
+const age1 = calcAge1(2002);
 
-// calling / running / involking function
-logger();
-logger();
-logger();
 
-function fruitProcessor(apples, oranges) {
-    const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
-    return juice;
+const calcAge2 = function (birthYear){ //EXPRESSION
+    return 2023 - birthYear;
 }
-
-const appleJuice = fruitProcessor(5, 0);
-console.log(appleJuice);
-// console.log(fruitProcessor(5, 0));
-
-const appleOrangeJuice = fruitProcessor(2, 4);
-console.log(appleOrangeJuice); 
+const age2 = calcAge2(2002);
+console.log(`This is variable 'age1': ${age1} and this is 'age2': ${age2}`);
