@@ -107,22 +107,55 @@
 //////////////////////////
 // REVIEWING FUNCTIONS
 //////////////////////////
-const calcAge = function(birthYear){
-    return 2023 - birthYear;
-}  
+// const calcAge = function(birthYear){
+//     return 2023 - birthYear;
+// }  
 
-const yearsUntilRetirement = function (birthYear, firstName){
-    const age = calcAge(birthYear);
-    const retirement = 65 - age;
-    if(retirement > 0){
-        console.log(`${firstName} retires in ${retirement} years!`);
-        return retirement;
-    } else{
-        console.log(`${firstName} has already retired`);
-        return -1;
+// const yearsUntilRetirement = function (birthYear, firstName){
+//     const age = calcAge(birthYear);
+//     const retirement = 65 - age;
+//     if(retirement > 0){
+//         console.log(`${firstName} retires in ${retirement} years!`);
+//         return retirement;
+//     } else{
+//         console.log(`${firstName} has already retired`);
+//         return -1;
+//     }
+//     // 
+// }
+
+// console.log(yearsUntilRetirement(2002, "Renan"));
+// console.log(yearsUntilRetirement(1950, "Mike"));
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE #1
+//////////////////////////
+const dpScore1 = 85;
+const dpScore2 = 54;
+const dpScore3 = 41;
+
+const koScore1 = 23;
+const koScore2 = 34;
+const koScore3 = 27;
+
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+const avgDolphins = calcAverage(dpScore1, dpScore2, dpScore3);
+const avgKoalas = calcAverage(koScore1, koScore2, koScore3);
+
+function checkWinner (avg1, avg2){
+    if (avg1 >= avg2 * 2){
+        return `Dolphins win (${avg1} vs ${avg2})`;
+    } else if(avg2 >= avg1 * 2) {
+        return `Koalas win (${avg2} vs ${avg1})`;
+    } else {
+        return 'There is no winner!';
     }
-    // 
 }
 
-console.log(yearsUntilRetirement(2002, "Renan"));
-console.log(yearsUntilRetirement(1950, "Mike"));    
+console.log(`Average Score of Dolphins: ${avgDolphins}
+Average Score of Koalas: ${avgKoalas}`);
+console.log(checkWinner(avgDolphins, avgKoalas));
