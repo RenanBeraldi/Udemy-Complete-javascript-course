@@ -134,28 +134,77 @@
 //////////////////////////
 // CODING CHALLENGE #1
 //////////////////////////
-const dpScore1 = 85;
-const dpScore2 = 54;
-const dpScore3 = 41;
+// const dpScore1 = 85;
+// const dpScore2 = 54;
+// const dpScore3 = 41;
 
-const koScore1 = 23;
-const koScore2 = 34;
-const koScore3 = 27;
+// const koScore1 = 23;
+// const koScore2 = 34;
+// const koScore3 = 27;
 
-const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
-const avgDolphins = calcAverage(dpScore1, dpScore2, dpScore3);
-const avgKoalas = calcAverage(koScore1, koScore2, koScore3);
+// const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+// const avgDolphins = calcAverage(dpScore1, dpScore2, dpScore3);
+// const avgKoalas = calcAverage(koScore1, koScore2, koScore3);
 
-function checkWinner (avg1, avg2){
-    if (avg1 >= avg2 * 2){
-        return `Dolphins win (${avg1} vs ${avg2})`;
-    } else if(avg2 >= avg1 * 2) {
-        return `Koalas win (${avg2} vs ${avg1})`;
-    } else {
-        return 'There is no winner!';
-    }
+// function checkWinner (avg1, avg2){
+//     if (avg1 >= avg2 * 2){
+//         return `Dolphins win (${avg1} vs ${avg2})`;
+//     } else if(avg2 >= avg1 * 2) {
+//         return `Koalas win (${avg2} vs ${avg1})`;
+//     } else {
+//         return 'There is no winner!';
+//     }
+// }
+
+// console.log(`Average Score of Dolphins: ${avgDolphins}
+// Average Score of Koalas: ${avgKoalas}`);
+// console.log(checkWinner(avgDolphins, avgKoalas));
+
+
+
+
+
+//////////////////////////
+// INTRODUCTION TO ARRAYS
+//////////////////////////
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+const y = new Array(1991, 1984, 2008, 2023);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length);
+console.log(friends[friends.length -1]);
+
+friends[2] = "Jay";
+console.log(friends);
+// friends = ["Bob", "Alice"];
+
+const firstName = "Renan"
+const lastName = "Beraldi"
+const birthYear = 2002;
+const currentYear = new Date().getFullYear();
+
+const renan = [firstName, lastName, currentYear - birthYear, "Programmer", friends]
+console.log(renan);
+console.log(renan.length);
+
+// EXERCISE
+const calcAge = function(birthYear){
+    return 2023 - birthYear;
 }
 
-console.log(`Average Score of Dolphins: ${avgDolphins}
-Average Score of Koalas: ${avgKoalas}`);
-console.log(checkWinner(avgDolphins, avgKoalas));
+const years = [1990, 1967, 2002, 2010, 2018];
+const age1 = calcAge(years[1]);
+const age2 = calcAge(years[2]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [calcAge(years[1]), calcAge(years[2]), calcAge(years[years.length -1])];
+console.log(ages);
