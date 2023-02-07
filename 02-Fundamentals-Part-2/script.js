@@ -47,14 +47,36 @@
 //////////////////////////
 // FUNCTION DECLARATIONS VS. EXPRESSIONS
 //////////////////////////
-function calcAge1(birthYear){ //DECLARATION
-    return 2023 - birthYear;
-}
-const age1 = calcAge1(2002);
+// function calcAge1(birthYear){ //DECLARATION
+//     return 2023 - birthYear;
+// }
+// const age1 = calcAge1(2002);
 
 
-const calcAge2 = function (birthYear){ //EXPRESSION
-    return 2023 - birthYear;
+// const calcAge2 = function (birthYear){ //EXPRESSION
+//     return 2023 - birthYear;
+// }
+// const age2 = calcAge2(2002);
+// console.log(`This is variable 'age1': ${age1} and this is 'age2': ${age2}`);
+
+
+
+
+
+//////////////////////////
+// ARROW FUNCTIONS
+//////////////////////////
+
+//ARROW FUNCTION
+const calcAge3 = birthYear => 2023 - birthYear;
+const age3 = calcAge3(2002);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+    const age = 2023 - birthYear;
+    const retirement = 65 - age;
+    // return retirement;
+    return `${firstName} retires in ${retirement} years!`;
 }
-const age2 = calcAge2(2002);
-console.log(`This is variable 'age1': ${age1} and this is 'age2': ${age2}`);
+
+console.log(yearsUntilRetirement(2002, "Renan"));
