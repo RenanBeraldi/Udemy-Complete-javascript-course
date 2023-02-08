@@ -307,36 +307,80 @@
 //////////////////////////
 // DOT VS BRACKET NOTATION
 //////////////////////////
+// const renan = {
+//     firstName: "Renan",
+//     lastName: "Beraldi",
+//     age: 2023 - 2002,
+//     job: "Programmer",
+//     friends: ["Michael", "Peter", "Steven"]
+// };
+
+// console.log(renan.lastName);
+// console.log(renan["lastName"]);
+
+// const nameKey = "Name";
+// console.log(renan["first" + nameKey]);
+// console.log(renan["last" + nameKey]);
+
+// // console.log(renan."first" + nameKey);
+
+// // const interestedIn = prompt("What do you want to know about Renan? Choose between firstName, lastName, age, job, and friends");
+
+// // if (renan[interestedIn]){
+// //     console.log(renan[interestedIn]);
+// // } else {
+// //     console.log(`There ins't a property called ${interestedIn}! Choose between firstName, lastName, age, job, and friends`);
+// // }
+
+
+// renan.location = "Sao Paulo";
+// renan['twitter'] = "@renanberaldi_"
+// console.log(renan);
+
+// // CHALLENGE
+// // Renan has 3 friends, and his best friend is called Michael
+// console.log(`${renan.firstName} has ${renan.friends.length} friends, and his best friend is called ${renan.friends[0]}`);
+
+
+
+
+
+//////////////////////////
+// OBJECT METHODS
+//////////////////////////
 const renan = {
     firstName: "Renan",
     lastName: "Beraldi",
-    age: 2023 - 2002,
+    birthYear: 2002,
     job: "Programmer",
-    friends: ["Michael", "Peter", "Steven"]
+    friends: ["Michael", "Peter", "Steven"],
+    hasDriversLicense: true,
+
+    // calcAge: function(birthYear){
+    //     return 2023 - birthYear;
+    // }
+
+    // calcAge: function(){
+    //     return 2023 - this.birthYear;
+    // }
+
+    calcAge: function(){
+        this.age = 2023 - this.birthYear
+        return this.age;
+    },
+
+    getSummary: function(){
+        return `${this.firstName}, is a ${this.calcAge()} years old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} drivers license`
+    }
 };
 
-console.log(renan.lastName);
-console.log(renan["lastName"]);
+console.log(renan.calcAge());
 
-const nameKey = "Name";
-console.log(renan["first" + nameKey]);
-console.log(renan["last" + nameKey]);
-
-// console.log(renan."first" + nameKey);
-
-// const interestedIn = prompt("What do you want to know about Renan? Choose between firstName, lastName, age, job, and friends");
-
-// if (renan[interestedIn]){
-//     console.log(renan[interestedIn]);
-// } else {
-//     console.log(`There ins't a property called ${interestedIn}! Choose between firstName, lastName, age, job, and friends`);
-// }
-
-
-renan.location = "Sao Paulo";
-renan['twitter'] = "@renanberaldi_"
-console.log(renan);
+console.log(renan.age);
+console.log(renan.age);
+console.log(renan.age);
+// console.log(renan["calcAge"](renan.birthYear));
 
 // CHALLENGE
-// Renan has 3 friends, and his best friend is called Michael
-console.log(`${renan.firstName} has ${renan.friends.length} friends, and his best friend is called ${renan.friends[0]}`);
+// "Jonas is a 46 years old teacher, and he has a drivers license"
+console.log(renan.getSummary());
