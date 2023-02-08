@@ -284,14 +284,29 @@
 //////////////////////////
 // INTRODUCTION TO OBJECTS
 //////////////////////////
-const renanArray = [
-    "Renan",
-    "Beraldi",
-    2023 - 2022,
-    "Programmer"
-    ["Michael", "Peter", "Steven"]
-];
+// const renanArray = [
+//     "Renan",
+//     "Beraldi",
+//     2023 - 2022,
+//     "Programmer"
+//     ["Michael", "Peter", "Steven"]
+// ];
 
+// const renan = {
+//     firstName: "Renan",
+//     lastName: "Beraldi",
+//     age: 2023 - 2002,
+//     job: "Programmer",
+//     friends: ["Michael", "Peter", "Steven"]
+// };
+
+
+
+
+
+//////////////////////////
+// DOT VS BRACKET NOTATION
+//////////////////////////
 const renan = {
     firstName: "Renan",
     lastName: "Beraldi",
@@ -299,3 +314,29 @@ const renan = {
     job: "Programmer",
     friends: ["Michael", "Peter", "Steven"]
 };
+
+console.log(renan.lastName);
+console.log(renan["lastName"]);
+
+const nameKey = "Name";
+console.log(renan["first" + nameKey]);
+console.log(renan["last" + nameKey]);
+
+// console.log(renan."first" + nameKey);
+
+// const interestedIn = prompt("What do you want to know about Renan? Choose between firstName, lastName, age, job, and friends");
+
+// if (renan[interestedIn]){
+//     console.log(renan[interestedIn]);
+// } else {
+//     console.log(`There ins't a property called ${interestedIn}! Choose between firstName, lastName, age, job, and friends`);
+// }
+
+
+renan.location = "Sao Paulo";
+renan['twitter'] = "@renanberaldi_"
+console.log(renan);
+
+// CHALLENGE
+// Renan has 3 friends, and his best friend is called Michael
+console.log(`${renan.firstName} has ${renan.friends.length} friends, and his best friend is called ${renan.friends[0]}`);
