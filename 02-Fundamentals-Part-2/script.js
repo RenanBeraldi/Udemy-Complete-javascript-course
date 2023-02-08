@@ -216,33 +216,55 @@
 //////////////////////////
 // BASIC ARRAY OPERATIONS (METHODS)
 //////////////////////////
-const friends = ["Michael", "Steven", "Peter"];
+// const friends = ["Michael", "Steven", "Peter"];
 
-// ADD ELEMENTS
-const newLength = friends.push("Jay"); //Last element
-console.log(friends);
-console.log(newLength);
+// // ADD ELEMENTS
+// const newLength = friends.push("Jay"); //Last element
+// console.log(friends);
+// console.log(newLength);
 
-friends.unshift("John"); //First element
-console.log(friends);
+// friends.unshift("John"); //First element
+// console.log(friends);
 
-// REMOVE ELEMENTS
-friends.pop(); //Last element
-const popped = friends.pop();
-console.log(friends); 
-console.log(popped);    
+// // REMOVE ELEMENTS
+// friends.pop(); //Last element
+// const popped = friends.pop();
+// console.log(friends); 
+// console.log(popped);    
 
-friends.shift(); //First element
-console.log(friends);
+// friends.shift(); //First element
+// console.log(friends);
 
-console.log(friends.indexOf("Steven"));
-console.log(friends.indexOf("Bob"));
+// console.log(friends.indexOf("Steven"));
+// console.log(friends.indexOf("Bob"));
 
-friends.push(23);
-console.log(friends.includes("Steven"));
-console.log(friends.includes("Bob"));
-console.log(friends.includes("23"));
+// friends.push(23);
+// console.log(friends.includes("Steven"));
+// console.log(friends.includes("Bob"));
+// console.log(friends.includes("23"));
 
-if (friends.includes("Steven")) {
-    console.log("You have a friend called Steven");
+// if (friends.includes("Steven")) {
+//     console.log("You have a friend called Steven");
+// }
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE 2
+//////////////////////////
+const bills = [125, 555, 44];
+function calcTip(billValue){
+    if(billValue >= 50 && billValue <= 300){
+        return billValue * 0.15;
+    } else {
+        return billValue * 0.2;
+    }
 }
+const tip = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const total = [bills[0] + tip[0], bills[1] + tip[1], bills[2] + tip[2]];
+
+console.log(`The first bill and the tip is US$${bills[0]}, US$${tip[0]} `);
+console.log(`The seccond bill and the tip is US$${bills[1]}, US$${tip[1]} `);
+console.log(`The third bill and the tip is US$${bills[2]}, US$${tip[2]} `);
