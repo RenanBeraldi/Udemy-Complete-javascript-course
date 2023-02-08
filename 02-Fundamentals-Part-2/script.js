@@ -254,17 +254,48 @@
 //////////////////////////
 // CODING CHALLENGE 2
 //////////////////////////
-const bills = [125, 555, 44];
-function calcTip(billValue){
-    if(billValue >= 50 && billValue <= 300){
-        return billValue * 0.15;
-    } else {
-        return billValue * 0.2;
-    }
-}
-const tip = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
-const total = [bills[0] + tip[0], bills[1] + tip[1], bills[2] + tip[2]];
+// const bills = [125, 555, 44];
+// function calcTip(billValue){
+//     if(billValue >= 50 && billValue <= 300){
+//         return billValue * 0.15;
+//     } else {
+//         return billValue * 0.2;
+//     }
+// }
+// const tip = [
+//     calcTip(bills[0]),
+//     calcTip(bills[1]),
+//     calcTip(bills[2])
+// ];
 
-console.log(`The first bill and the tip is US$${bills[0]}, US$${tip[0]} `);
-console.log(`The seccond bill and the tip is US$${bills[1]}, US$${tip[1]} `);
-console.log(`The third bill and the tip is US$${bills[2]}, US$${tip[2]} `);
+// const total = [
+//     bills[0] + tip[0],
+//     bills[1] + tip[1],
+//     bills[2] + tip[2]];
+
+// console.log(`The first bill and the tip is US$${bills[0]}, US$${tip[0]} with the total of US$${total[0]}`);
+// console.log(`The seccond bill and the tip is US$${bills[1]}, US$${tip[1]} with the total of US$${total[1]}`);
+// console.log(`The third bill and the tip is US$${bills[2]}, US$${tip[2]} with the total of US$${total[2]}`);
+
+
+
+
+
+//////////////////////////
+// INTRODUCTION TO OBJECTS
+//////////////////////////
+const renanArray = [
+    "Renan",
+    "Beraldi",
+    2023 - 2022,
+    "Programmer"
+    ["Michael", "Peter", "Steven"]
+];
+
+const renan = {
+    firstName: "Renan",
+    lastName: "Beraldi",
+    age: 2023 - 2002,
+    job: "Programmer",
+    friends: ["Michael", "Peter", "Steven"]
+};
