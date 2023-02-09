@@ -348,39 +348,78 @@
 //////////////////////////
 // OBJECT METHODS
 //////////////////////////
-const renan = {
-    firstName: "Renan",
-    lastName: "Beraldi",
-    birthYear: 2002,
-    job: "Programmer",
-    friends: ["Michael", "Peter", "Steven"],
-    hasDriversLicense: true,
+// const renan = {
+//     firstName: "Renan",
+//     lastName: "Beraldi",
+//     birthYear: 2002,
+//     job: "Programmer",
+//     friends: ["Michael", "Peter", "Steven"],
+//     hasDriversLicense: true,
 
-    // calcAge: function(birthYear){
-    //     return 2023 - birthYear;
-    // }
+//     // calcAge: function(birthYear){
+//     //     return 2023 - birthYear;
+//     // }
 
-    // calcAge: function(){
-    //     return 2023 - this.birthYear;
-    // }
+//     // calcAge: function(){
+//     //     return 2023 - this.birthYear;
+//     // }
 
-    calcAge: function(){
-        this.age = 2023 - this.birthYear
-        return this.age;
-    },
+//     calcAge: function(){
+//         this.age = 2023 - this.birthYear
+//         return this.age;
+//     },
 
-    getSummary: function(){
-        return `${this.firstName}, is a ${this.calcAge()} years old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} drivers license`
-    }
-};
+//     getSummary: function(){
+//         return `${this.firstName}, is a ${this.calcAge()} years old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} drivers license`
+//     }
+// };
 
-console.log(renan.calcAge());
+// console.log(renan.calcAge());
 
-console.log(renan.age);
-console.log(renan.age);
-console.log(renan.age);
-// console.log(renan["calcAge"](renan.birthYear));
+// console.log(renan.age);
+// console.log(renan.age);
+// console.log(renan.age);
+// // console.log(renan["calcAge"](renan.birthYear));
 
-// CHALLENGE
-// "Jonas is a 46 years old teacher, and he has a drivers license"
-console.log(renan.getSummary());
+// // CHALLENGE
+// // "Jonas is a 46 years old teacher, and he has a drivers license"
+// console.log(renan.getSummary());
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE 3
+//////////////////////////
+// const mark = {
+//     fullName: "Mark Miller",
+//     weight: 78,
+//     height: 1.69,
+//     calcBMI: function(){
+//         this.bmi = this.weight / (this.height**2);
+//         return this.bmi;
+//     }
+// };
+// const john = {
+//     fullName: "John Smith",
+//     weight: 92,
+//     height: 1.95,
+//     calcBMI: function(){
+//         this.bmi = this.weight / (this.height**2);
+//         return this.bmi;
+//     }
+// };
+// function biggerBMI(name1, bmi1, name2, bmi2){
+//     name1 = mark.fullName;
+//     bmi1 = mark.calcBMI();
+
+//     name2 = john.fullName;
+//     bmi2 = john.calcBMI();
+//     if (bmi1 > bmi2){
+//         return `${name1}'s BMI (${bmi1}) is bigger than ${name2}'s BMI (${bmi2})`;
+//     } else {
+//         return `${name2}'s BMI (${bmi2}) is bigger than ${name2}'s BMI (${bmi2})`;
+//     }
+// }
+// console.log(biggerBMI());
