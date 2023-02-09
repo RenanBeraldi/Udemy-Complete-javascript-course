@@ -429,7 +429,7 @@
 
 
 //////////////////////////
-// ITERATION: THE LOOR FOR
+// ITERATION: THE LOOP FOR
 //////////////////////////
 // console.log("Lifting weights repetition 1");
 // console.log("Lifting weights repetition 2");
@@ -442,6 +442,66 @@
 // console.log("Lifting weights repetition 9");
 // console.log("Lifting weights repetition 10");
 
-for(let rep = 1; rep <= 10; rep++){
-    console.log(`Lifting weights repetition ${rep}`)
+// for(let rep = 1; rep <= 10; rep++){
+//     console.log(`Lifting weights repetition ${rep}`);
+// }
+
+
+
+
+
+//////////////////////////
+// LOOPING ARRAYS, BREAKING AND CONTINUING
+//////////////////////////
+const renan = [
+    "Renan",
+    "Beraldi",
+    2023 - 2002,
+    "Programmer",
+    ["Michael", "Peter", "Steven"],
+    true
+];
+
+const types = [];
+
+for(let i = 0; i < renan.length ; i++){
+    // reading renan array
+    console.log(renan[i], typeof renan[i]);
+
+    // filling types array
+    // types[i] = typeof renan[i];
+    types.push(typeof renan[i])
 }
+console.log(types);
+
+const years = [
+    1991,
+    2007,
+    1969,
+    2020
+]
+const ages = [];
+
+for(let i = 0; i < years.length; i++){
+    const currentYear = new Date().getFullYear();
+    ages.push( currentYear - years[i]);
+}
+console.log(ages); 
+
+// continue and break statement
+
+// continue
+for(let i = 0; i < renan.length ; i++){
+    if (typeof renan[i] !== "string"){
+        continue;
+    }
+    console.log(renan[i], typeof renan[i]);
+} 
+
+// break
+for(let i = 0; i < renan.length ; i++){
+    if (typeof renan[i] === "number"){
+        break;
+    }
+    console.log(renan[i], typeof renan[i]);
+} 
