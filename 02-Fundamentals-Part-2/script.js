@@ -453,55 +453,107 @@
 //////////////////////////
 // LOOPING ARRAYS, BREAKING AND CONTINUING
 //////////////////////////
-const renan = [
-    "Renan",
-    "Beraldi",
-    2023 - 2002,
-    "Programmer",
-    ["Michael", "Peter", "Steven"],
-    true
-];
+// const renan = [
+//     "Renan",
+//     "Beraldi",
+//     2023 - 2002,
+//     "Programmer",
+//     ["Michael", "Peter", "Steven"],
+//     true
+// ];
 
-const types = [];
+// const types = [];
 
-for(let i = 0; i < renan.length ; i++){
-    // reading renan array
-    console.log(renan[i], typeof renan[i]);
+// for(let i = 0; i < renan.length ; i++){
+//     // reading renan array
+//     console.log(renan[i], typeof renan[i]);
 
-    // filling types array
-    // types[i] = typeof renan[i];
-    types.push(typeof renan[i])
+//     // filling types array
+//     // types[i] = typeof renan[i];
+//     types.push(typeof renan[i])
+// }
+// console.log(types);
+
+// const years = [
+//     1991,
+//     2007,
+//     1969,
+//     2020
+// ]
+// const ages = [];
+
+// for(let i = 0; i < years.length; i++){
+//     const currentYear = new Date().getFullYear();
+//     ages.push( currentYear - years[i]);
+// }
+// console.log(ages); 
+
+// // continue and break statement
+
+// // continue
+// for(let i = 0; i < renan.length ; i++){
+//     if (typeof renan[i] !== "string"){
+//         continue;
+//     }
+//     console.log(renan[i], typeof renan[i]);
+// } 
+
+// // break
+// for(let i = 0; i < renan.length ; i++){
+//     if (typeof renan[i] === "number"){
+//         break;
+//     }
+//     console.log(renan[i], typeof renan[i]);
+// } 
+
+
+
+
+
+//////////////////////////
+// LOOPING BACKWARDS AND LOOPS IN LOOPS
+//////////////////////////
+// const renan = [
+//     "Renan",
+//     "Beraldi",
+//     2023 - 2002,
+//     "Programmer",
+//     ["Michael", "Peter", "Steven"]
+// ];
+
+// for(let i = renan.length -1; i >= 0; i--){
+//     console.log(i, renan[i]);
+// }
+
+// for(let ex = 1; ex <= 3; ex++){
+//     console.log(`Starting exercise N${ex}`);
+//     for(let rep = 1; rep <= 5; rep++){
+//         console.log(`Repetition ${rep}`);
+//     }
+// }
+
+
+
+
+
+//////////////////////////
+// THE WHILE LOOP
+//////////////////////////
+// for(let rep = 1; rep <= 10; rep++){
+//     console.log(`Lifting weights repetition ${rep}`);
+// }
+
+let rep = 1;
+while(rep <= 10){
+    // console.log(`Lifting weights repetition ${rep}`);
+    rep++;
 }
-console.log(types);
 
-const years = [
-    1991,
-    2007,
-    1969,
-    2020
-]
-const ages = [];
-
-for(let i = 0; i < years.length; i++){
-    const currentYear = new Date().getFullYear();
-    ages.push( currentYear - years[i]);
-}
-console.log(ages); 
-
-// continue and break statement
-
-// continue
-for(let i = 0; i < renan.length ; i++){
-    if (typeof renan[i] !== "string"){
-        continue;
+let dice = Math.trunc(Math.random() * 6) + 1;
+while(dice !== 6){
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6){
+        console.log(`Loop is about to end`);
     }
-    console.log(renan[i], typeof renan[i]);
-} 
-
-// break
-for(let i = 0; i < renan.length ; i++){
-    if (typeof renan[i] === "number"){
-        break;
-    }
-    console.log(renan[i], typeof renan[i]);
-} 
+}   
