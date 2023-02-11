@@ -556,4 +556,40 @@
 //     if (dice === 6){
 //         console.log(`Loop is about to end`);
 //     }
-// }   
+// }
+
+
+
+
+
+//////////////////////////
+// CODING CHALLENGE 4
+//////////////////////////
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+function calcTip(billValue){
+    if(billValue >= 50 && billValue <= 300){
+        return billValue * 0.15;
+    } else {
+        return billValue * 0.2;
+    }
+}
+
+for(let i = 0; i < bills.length-1; i++){
+    tips.push(calcTip(bills[i]));
+    totals.push(bills[i] + tips[i]); 
+    console.log(bills[i], tips[i], totals[i]);
+}
+
+const calcAverage = function(arr){
+    let sum = 0;
+    for(i = 0; i < arr.length-1; i++){
+        sum += arr[i];  // sum = sum + arr[i];
+    }
+    return sum / arr.length;
+}
+
+console.log(calcAverage(totals));
