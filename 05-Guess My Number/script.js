@@ -17,13 +17,15 @@
 ///////////////////////////
 // HANDLING CLICK EVENTS & IMPLEMENTING THE GAME LOGIC
 ///////////////////////////
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
 const message = document.querySelector('.message');
 const number = document.querySelector('.number');
 const again = document.querySelector('.again');
 const check = document.querySelector('.check');
 const body = document.querySelector('body');
+
 let score = 20;
+let highscore = 0;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 check.addEventListener('click', function(){
     const guess = Number(document.querySelector('.guess').value);
@@ -37,6 +39,11 @@ check.addEventListener('click', function(){
         body.style.backgroundColor = '#60b347';
         number.style.width = '30rem';
 
+        if(score > highscore){
+            highscore = score;
+            document.querySelector('.highscore').textContent = highscore;
+        }
+
     } else if (guess > secretNumber){ // when guess is bigger
         if (score > 1) {
             message.textContent = '📈 Too high!';
@@ -47,7 +54,7 @@ check.addEventListener('click', function(){
         }
 
     } else if(guess < secretNumber){ // when guess is smaller
-        if (score > 0) {
+        if (score > 1) {
             message.textContent = '📉 Too low!';
             score--;
             document.querySelector('.score').textContent = score;
@@ -58,11 +65,13 @@ check.addEventListener('click', function(){
     }
 });
 
-again.addEventListener('click', function(){
-    document.querySelector('.score').textContent = 20;
-    number.textContent = '?';
-    number.style.width = '15rem'
+again.addEventListener("click", function(){
+    score = 20;
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
     message.textContent = 'Start guessing...';
+    document.querySelector('.score').textContent = score;
+    number.textContent = '?';
     document.querySelector('.guess').value = '';
     body.style.backgroundColor = '#222';
+    number.style.width = '15rem';
 });
