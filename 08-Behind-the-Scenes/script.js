@@ -117,55 +117,76 @@
 // const f = renan.calcAge;
 // f();
 
+// ///////////////////////////////
+// // Regular Functions vs. Arrow Functions
+// ///////////////////////////////
+
+// // var firstName = 'Matilda';
+
+// const renan = {
+//   firstName: 'Renan',
+//   year: 2002,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(new Date().getFullYear() - this.year);
+
+//     // Solution 1
+//     // const self = this;
+//     // const isMillenial = function () {
+//     //   console.log(self);
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     //   // console.log(this.year >= 1981 || this.year <= 1996);
+//     // };
+//     // isMillenial();
+
+//     // Solution 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+//     isMillenial();
+//   },
+
+//   greet: () => {
+//     console.log(this);
+//     console.log(`Hey, ${this.firstName}`);
+//   },
+// };
+// renan.greet();
+// renan.calcAge();
+
+// // arguments keyword
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 5);
+// addExpr(2, 5, 8, 12);
+
+// var addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// addArrow(2, 5, 8);
+
 ///////////////////////////////
-// Regular Functions vs. Arrow Functions
+// Primitives vs. Objects (Primitives vs. Reference types)
 ///////////////////////////////
 
-// var firstName = 'Matilda';
+let age = 30;
+let oldAge = age;
+age = 31;
 
-const renan = {
-  firstName: 'Renan',
-  year: 2002,
-  calcAge: function () {
-    console.log(this);
-    console.log(new Date().getFullYear() - this.year);
+console.log(age);
+console.log(oldAge);
 
-    // Solution 1
-    // const self = this;
-    // const isMillenial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   // console.log(this.year >= 1981 || this.year <= 1996);
-    // };
-    // isMillenial();
-
-    // Solution 2
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
-    isMillenial();
-  },
-
-  greet: () => {
-    console.log(this);
-    console.log(`Hey, ${this.firstName}`);
-  },
+const me = {
+    name: 'Renan',
+    age: 21,
 };
-renan.greet();
-renan.calcAge();
+const friend = me;
+friend.age = 27;
 
-// arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
-
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-
-addArrow(2, 5, 8);
+console.log('Friend', friend);
+console.log('Me', me);
