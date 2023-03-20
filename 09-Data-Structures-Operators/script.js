@@ -39,34 +39,64 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 };
 
 ////////////////////////////////////////
 //  The Spread Operator
 ////////////////////////////////////////
 
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
 
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
 
-// Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// // Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-// Join 2 arrays together
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// // Join 2 arrays together
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// // Iterables: arrays, strings, maps, sets. NOT objects.
+// const str = 'Jonas';
+// const letters = [...str, ' ', 'S.'];
+// console.log(letters);
+// console.log(...str);
+// // console.log(`${...str} Schmedtmann`); THIS CANNOT BE DONE
+
+// const ingredients = [
+//   // prompt("Let's make pasta, ingredient 1?"),
+//   // prompt('ingredient 2?'),
+//   // prompt('ingredient 3?'),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(...ingredients);
+
+// // Objects
+// const newRestaurant = {
+//   foundingYear: 1998,
+//   ...restaurant,
+//   founder: 'Giuseppe',
+// };
+// console.log(newRestaurant);
 
 //////////////////////////////////////
 // Destructuring Objects
 //////////////////////////////////////
 
-// `restaurant.orderDelivery({
+// restaurant.orderDelivery({
 //   time: '22:30',
 //   address: 'Via del Sole, 21',
 //   mainIndex: 2,
