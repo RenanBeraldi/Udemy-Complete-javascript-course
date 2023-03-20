@@ -48,6 +48,23 @@ const restaurant = {
 };
 
 ////////////////////////////////////////
+//  Rest Pattern and Parameters
+////////////////////////////////////////
+
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because on left side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+////////////////////////////////////////
 //  The Spread Operator
 ////////////////////////////////////////
 
@@ -75,13 +92,14 @@ const restaurant = {
 // console.log(...str);
 // // console.log(`${...str} Schmedtmann`); THIS CANNOT BE DONE
 
+// // Passing multiple values into a function:
 // const ingredients = [
 //   // prompt("Let's make pasta, ingredient 1?"),
 //   // prompt('ingredient 2?'),
 //   // prompt('ingredient 3?'),
 // ];
-// console.log(ingredients);
 
+// console.log(ingredients);
 // restaurant.orderPasta(...ingredients);
 
 // // Objects
