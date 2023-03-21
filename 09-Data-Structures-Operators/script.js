@@ -52,37 +52,48 @@ const restaurant = {
   },
 };
 ////////////////////////////////////////
+// The Nullish Coalescing Operator (??)
+////////////////////////////////////////
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+////////////////////////////////////////
 // The short-circuiting && and ||
 ////////////////////////////////////////
 
-console.log('----- OR -----');
-// Use ANY data type, return ANY data type, Short circuiting
-console.log(3 || 'Jonas');
-console.log('' || 'Jonas');
-console.log(true || 0);
-console.log(undefined || null);
+// console.log('----- OR -----');
+// // Use ANY data type, return ANY data type, Short circuiting
+// console.log(3 || 'Jonas');
+// console.log('' || 'Jonas');
+// console.log(true || 0);
+// console.log(undefined || null);
 
-console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-console.log('----- AND -----');
-console.log(0 && 'Jonas');
-console.log(7 && 'Jonas');
+// console.log('----- AND -----');
+// console.log(0 && 'Jonas');
+// console.log(7 && 'Jonas');
 
-console.log('Hello' && 23 && null && 'Jonas');
+// console.log('Hello' && 23 && null && 'Jonas');
 
-// Pratical example
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
+// // Pratical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 ////////////////////////////////////////
 //  Rest Pattern and Parameters
