@@ -51,75 +51,91 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+////////////////////////////////////////
+// Looping Arrays: The for-of loop
+////////////////////////////////////////
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) {
+  console.log(item);
+}
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+console.log([...menu.entries()]);
+
 ////////////////////////////////////////
 // Coding Challenge #1
 ////////////////////////////////////////
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
 
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
-// Task 1
-const [players1, players2] = game.players;
+// // Task 1
+// const [players1, players2] = game.players;
 
-// Task 2
-const [gk, ...fieldPlayers] = players1;
+// // Task 2
+// const [gk, ...fieldPlayers] = players1;
 
-// Task 3
-const [allPlayers] = [...players1, ...players2];
+// // Task 3
+// const [allPlayers] = [...players1, ...players2];
 
-// Task 4
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // Task 4
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 
-// Task 5
-const { team1, x: draw, team2 } = game.odds;
+// // Task 5
+// const { team1, x: draw, team2 } = game.odds;
 
-// Task 6
-const printGoals = function (...players) {
-  console.log(`${players.length} goals scored`);
-};
-printGoals(...game.scored);
+// // Task 6
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals scored`);
+// };
+// printGoals(...game.scored);
 
-// Task 7
-team1 < team2 && console.log('Team 1 will probably win');
-team2 < team1 && console.log('Team 2 will probably win');
+// // Task 7
+// team1 < team2 && console.log('Team 1 will probably win');
+// team2 < team1 && console.log('Team 2 will probably win');
 
 ////////////////////////////////////////
 // Logical Assignment Operators
@@ -201,7 +217,6 @@ team2 < team1 && console.log('Team 2 will probably win');
 ////////////////////////////////////////
 //  Rest Pattern and Parameters
 ////////////////////////////////////////
-
 // DESTRUCTURING
 
 // SPREAD, because on RIGHT side of =
