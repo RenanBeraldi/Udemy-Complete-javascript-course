@@ -51,30 +51,43 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+////////////////////////////////////////
+// Maps: Fundamentals
+////////////////////////////////////////
 
 ////////////////////////////////////////
-// Looping Objects: Object Keys, Values, Entries
+// Sets
 ////////////////////////////////////////
-const ordersSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Risotto',
-  'Pasta',
-  'Pizza',
-]);
-console.log(ordersSet);
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+// console.log(ordersSet);
 
-console.log(new Set('Renan'));
+// console.log(new Set('Renan'));
 
-console.log(ordersSet.size);
-console.log(ordersSet.has('Pizza'));
-console.log(ordersSet.has('Bread'));
-ordersSet.add('Garlic Bread');
-ordersSet.add('Garlic Bread');
-ordersSet.delete('Risotto');
-// ordersSet.clear();
-console.log(ordersSet);
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));
+// console.log(ordersSet.has('Bread'));
+// ordersSet.add('Garlic Bread');
+// ordersSet.add('Garlic Bread');
+// ordersSet.delete('Risotto');
+// // ordersSet.clear();
+// console.log(ordersSet);
+
+// for (const order of ordersSet) console.log(order);
+
+// // Example
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+// console.log(
+//   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+// );
 
 ////////////////////////////////////////
 // Coding Challenge #2
@@ -500,36 +513,55 @@ console.log(ordersSet);
 //////////////////////////////////////
 // Destructuring Arrays
 //////////////////////////////////////
-// const arr = [2, 3, 4];
-// const a = arr[0];
-// const b = arr[1];
-// const c = arr[2];
+const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
 
-// const [x, y, z] = arr;
-// console.log(x, y, z);
+// When JS see the brackets on the left side of the equal sign, it knows that is destructuring
+const [x, y, z] = arr;
+console.log(x, y, z);
+console.log(arr);
 
-// let [main, , secondary] = restaurant.categories;
+// Isn't necessary extract all the elements of the array!!!
+// To take elements that is not in order, like the 1st and 3rd element, just leave a "hole (first, ,third)" between the elements
+const [first, , second] = restaurant.categories;
+console.log(first, second);
+
+// SWITCHING VARIABLES
+// if want to invert the order of the elements in the array, we can do like this
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
+
+// Without destructuring we would have to do like this
+// let temp = main;
+// main = secondary;
+// secondary = temp;
 // console.log(main, secondary);
 
-// // SWITCHING VARIABLES:
-// // const temp = main;
-// // main = secondary;
-// // secondary = temp;
+// With destructuring
+// We don't need to use "const" or "let", because just reassigning the value
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
 
-// [main, secondary] = [secondary, main];
-// console.log(main, secondary);
+// We can have a functions returning a array and the result can be destructured into different variables
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse);
 
-// // Receive 2 return values from a function
-// const [starter, mainCourse] = restaurant.order(2, 0);
-// console.log(starter, mainCourse);
+// And if we have an array inside an other array (nested array)
+const nested = [2, 4, [5, 6]];
 
-// // NESTED DESTRUCTURING:
-// const nested = [2, 4, [5, 6]];
-// // const [i, , j] = nested;
-// // console.log(i, j);
-// const [i, , [j, k]] = nested;
-// console.log(i, j, k);
+// how can we get the first value and the entire array?
+// const [i, , j] = nested;
+// console.log(i, j);
 
-// // DEFAULT VALUES:
-// const [p = 1, q = 1, r = 1] = [8, 9];
-// console.log(p, q, r);
+// if we want all the individual values? We do destructuring inside the destructuring
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
+
+// DEFAULT VALUES
+// We can set default values for the variables when we are extracting them. It's useful in the case if we don't know the length of the array. If we have an array that is shorter than we might think, then we might try to unpack the array in positions that don't even exist.
+
+// we put "= 1" in all the variables in the destructuring, if we have values that is not 1, that is the array
+const [p = 1, q = 1, r = 1] = [8, 9];
+console.log(p, q, r);
