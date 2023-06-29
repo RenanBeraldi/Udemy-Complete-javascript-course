@@ -421,50 +421,67 @@ const restaurant = {
 // restaurant.orderPizza('mushrroms');
 
 ////////////////////////////////////////
-//  The Spread Operator
+// The Spread Operator
 ////////////////////////////////////////
+// We can use spread operator to basically expand an array into all its elements, basically unpacking all the array elements at one.
 
-// const arr = [7, 8, 9];
-// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-// console.log(badNewArr);
+const arr = [7, 8, 9];
 
-// const newArr = [1, 2, ...arr];
-// console.log(newArr);
+// We will create a new array based on this array, but with some new elements at the beginning
+// Manual way:
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
 
-// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-// console.log(newMenu);
+// with Spread Operator
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-// // Copy array
-// const mainMenuCopy = [...restaurant.mainMenu];
+// What the Spread Operator does is take all the elements out of the arr. array, and then write them individually
+// This means that we can use the spread operator whenever we would otherwise write multiple values separated by commas. And this situation happens whenever we write an array literal: const arr = [7, 8, 9];
 
-// // Join 2 arrays together
-// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// console.log(menu);
+// We can use the Spread Operator to pass arguments into functions
+// Let's suppose that we want to log the individual elements of the "newArr".
+console.log(...newArr);
+console.log(1, 2, 7, 8, 9);
 
-// // Iterables: arrays, strings, maps, sets. NOT objects.
-// const str = 'Jonas';
-// const letters = [...str, ' ', 'S.'];
-// console.log(letters);
-// console.log(...str);
-// // console.log(`${...str} Schmedtmann`); THIS CANNOT BE DONE
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
 
-// // Passing multiple values into a function:
-// const ingredients = [
-//   // prompt("Let's make pasta, ingredient 1?"),
-//   // prompt('ingredient 2?'),
-//   // prompt('ingredient 3?'),
-// ];
+// The Spread Operator is similar to destructuring, because it also helps to get elements out of arrays. The big difference is that the Spread doesn't take all the elements from the array, and it also doesn't create new variables. As consequence, it can only be used in places we would otherwise write values separated by commas.
 
-// console.log(ingredients);
-// restaurant.orderPasta(...ingredients);
+// We can use the spread operator to create shallow copies of arrays, and to merge two arrays together.
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
 
-// // Objects
-// const newRestaurant = {
-//   foundingYear: 1998,
-//   ...restaurant,
-//   founder: 'Giuseppe',
-// };
-// console.log(newRestaurant);
+// Join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+// The Spread Operator doesn't work only on arrays, it works at all Iterables.
+// Iterables: arrays, strings, maps, sets. NOT objects
+const str = 'Renan';
+const letters = [...str, ' ', 'B.'];
+console.log(letters);
+console.log(...str);
+// We cannot use the Spread Operator in a template literal
+// console.log(`${...str} Beraldi`);
+
+// Using the Spread Operator with functions (Real-World Example):
+const ingredients = [
+  // prompt("Let's make pasta! Ingredient 1?"),
+  // prompt('Ingredient 2?'),
+  // prompt('Ingredient 3?'),
+];
+
+restaurant.orderPasta(...ingredients);
+
+// Since ES 2018, the Spread Operator also works on objects, even though objects are not iterables
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
 
 //////////////////////////////////////
 // Destructuring Objects
@@ -472,59 +489,59 @@ const restaurant = {
 // To destructure objects, we use the curly braces "{}", cause this is also how we create objects
 // We have to provide the variable name, that exactly match the property names that we want to retrieve from the object.
 // In an object, the order of the elements does not matter, we don't need to skip elements like is done with arrays.
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
 
-// DIFFERENT VARIABLE NAME
-// if we want the variable names different from the property names
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+// // DIFFERENT VARIABLE NAME
+// // if we want the variable names different from the property names
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
 
-// DEFAULT VALUES
-// When we are getting for an API call for example, set default values for values that we don't know that exist, like in Array Destructuring, is really useful.
-// The syntax of setting different variable name, can be combined with it.
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+// // DEFAULT VALUES
+// // When we are getting for an API call for example, set default values for values that we don't know that exist, like in Array Destructuring, is really useful.
+// // The syntax of setting different variable name, can be combined with it.
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
 
-// MUTATING VARIABLES
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
+// // MUTATING VARIABLES
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
 
-// We cannot do like this:
-// {a, b} = obj;
-// Because the JS is expecting a code block, and we cannot declare nothing to a code block, to solve this, we need to wrap this into parenthesis.
-({ a, b } = obj);
-console.log(a, b);
+// // We cannot do like this:
+// // {a, b} = obj;
+// // Because the JS is expecting a code block, and we cannot declare nothing to a code block, to solve this, we need to wrap this into parenthesis.
+// ({ a, b } = obj);
+// console.log(a, b);
 
-// NESTED OBJECTS
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+// // NESTED OBJECTS
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
 
-// Many times in JS, we have functions with a lot of parameters. But then can be hard to know the order of parameters. Instead of defining the parameters manually, we can pass a object into the function as an argument, and then, the function will destructure that object!
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
-// In the function arguments, we can actually do destructuring right away.
-// orderDelivery: function ({starterIndex, mainIndex, address, time}) {
-// As we receive the object in the function, immediately do destructuring, that's why the arguments in the functions need to be the same as the calling, but is not necessary match the order in which we do destructuring
+// // Many times in JS, we have functions with a lot of parameters. But then can be hard to know the order of parameters. Instead of defining the parameters manually, we can pass a object into the function as an argument, and then, the function will destructure that object!
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+// // In the function arguments, we can actually do destructuring right away.
+// // orderDelivery: function ({starterIndex, mainIndex, address, time}) {
+// // As we receive the object in the function, immediately do destructuring, that's why the arguments in the functions need to be the same as the calling, but is not necessary match the order in which we do destructuring
 
-// DEFAULT VALUES
-// We can use default values in the objects destructuring too, in the function orderDelivery, we can set default values if they cannot be destructured
-// orderDelivery: function ({ starterIndex = 1, mainIndex = 0, address, time  = '20:00' }) {
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 1,
-});
+// // DEFAULT VALUES
+// // We can use default values in the objects destructuring too, in the function orderDelivery, we can set default values if they cannot be destructured
+// // orderDelivery: function ({ starterIndex = 1, mainIndex = 0, address, time  = '20:00' }) {
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 1,
+// });
 
 //////////////////////////////////////
 // Destructuring Arrays
