@@ -380,108 +380,114 @@ const restaurant = {
 // restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 ////////////////////////////////////////
-//  Rest Pattern and Parameters
+// Rest Pattern and Parameters
 ////////////////////////////////////////
+// The Rest Pattern looks exactly like the Spread Operator, it has the same syntax with the three dots, but it actually does the opposite of the spread operator. The Rest Pattern uses the exact same syntax however, to collect multiple elements and condense them into an array.
+
 // DESTRUCTURING
+// We know that is the Spread Operator because, it's being used on the right side of the Assignment Operator
+const arr = [1, 2, ...[3, 4]];
 
-// SPREAD, because on RIGHT side of =
-// const arr = [1, 2, ...[3, 4]];
+// Rest, because on left side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+// It's called Rest, because, it takes the remaining elements, of the array, that is not destructured in a variable. And put them in a new array.
 
-// // REST, because on left side of =
-// const [a, b, ...others] = [1, 2, 3, 4, 5];
-// console.log(a, b, others);
+// We can use the (...) on both sides of the assignment operator
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+// It does not include any skipped elements, it's really just the rest of the elements. So, for that reason, the Rest Pattern always must be the last in the destructuring assignment. Because otherwise, how will JavaScript know until when it should collect the rest of the array?
+// There can only ever be one rest in any destructuring assignment
 
-// const [pizza, , risotto, ...otherFood] = [
-//   ...restaurant.mainMenu,
-//   ...restaurant.starterMenu,
-// ];
-// console.log(pizza, risotto, otherFood);
+// The Rest Pattern also works in OBJECTS, the difference is that the remaining elements will be collected into a new object and not into a new array.
+const { sat, ...weekdays } = restaurant.openingHours;
 
-// // Objects
-// const { sat, ...weekdays } = restaurant.openingHours;
-// console.log(sat, weekdays);
+// FUNCTIONS
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
 
-// // FUNCTIONS
-// const add = function (...numbers) {
-//   let sum = 0;
-//   for (let i = 0; i < numbers.length; i++) {
-//     sum += numbers[i];
-//   }
-//   console.log(sum);
-// };
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
 
-// add(2, 3);
-// add(5, 3, 7, 2);
-// add(8, 2, 5, 3, 2, 1, 4);
+// This is spread operator
+const x = [23, 5, 7];
+add(...x);
 
-// const x = [23, 5, 7];
-// add(...x);
-
-// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-// restaurant.orderPizza('mushrroms');
+restaurant.orderPizza('mushrooms', 'onion', 'spinach', 'olives');
+// This function call below will give us a empty array, cause there is no declaration to the array otherIngredients.
+restaurant.orderPizza('mushrooms');
 
 ////////////////////////////////////////
 // The Spread Operator
 ////////////////////////////////////////
 // We can use spread operator to basically expand an array into all its elements, basically unpacking all the array elements at one.
 
-const arr = [7, 8, 9];
+// const arr = [7, 8, 9];
 
-// We will create a new array based on this array, but with some new elements at the beginning
-// Manual way:
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// // We will create a new array based on this array, but with some new elements at the beginning
+// // Manual way:
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
 
-// with Spread Operator
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// // with Spread Operator
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
 
-// What the Spread Operator does is take all the elements out of the arr. array, and then write them individually
-// This means that we can use the spread operator whenever we would otherwise write multiple values separated by commas. And this situation happens whenever we write an array literal: const arr = [7, 8, 9];
+// // What the Spread Operator does is take all the elements out of the arr. array, and then write them individually
+// // This means that we can use the spread operator whenever we would otherwise write multiple values separated by commas. And this situation happens whenever we write an array literal: const arr = [7, 8, 9];
 
-// We can use the Spread Operator to pass arguments into functions
-// Let's suppose that we want to log the individual elements of the "newArr".
-console.log(...newArr);
-console.log(1, 2, 7, 8, 9);
+// // We can use the Spread Operator to pass arguments into functions
+// // Let's suppose that we want to log the individual elements of the "newArr".
+// console.log(...newArr);
+// console.log(1, 2, 7, 8, 9);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
 
-// The Spread Operator is similar to destructuring, because it also helps to get elements out of arrays. The big difference is that the Spread doesn't take all the elements from the array, and it also doesn't create new variables. As consequence, it can only be used in places we would otherwise write values separated by commas.
+// // The Spread Operator is similar to destructuring, because it also helps to get elements out of arrays. The big difference is that the Spread doesn't take all the elements from the array, and it also doesn't create new variables. As consequence, it can only be used in places we would otherwise write values separated by commas.
 
-// We can use the spread operator to create shallow copies of arrays, and to merge two arrays together.
-// Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// // We can use the spread operator to create shallow copies of arrays, and to merge two arrays together.
+// // Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-// Join 2 arrays
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// // Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
-// The Spread Operator doesn't work only on arrays, it works at all Iterables.
-// Iterables: arrays, strings, maps, sets. NOT objects
-const str = 'Renan';
-const letters = [...str, ' ', 'B.'];
-console.log(letters);
-console.log(...str);
-// We cannot use the Spread Operator in a template literal
-// console.log(`${...str} Beraldi`);
+// // The Spread Operator doesn't work only on arrays, it works at all Iterables.
+// // Iterables: arrays, strings, maps, sets. NOT objects
+// const str = 'Renan';
+// const letters = [...str, ' ', 'B.'];
+// console.log(letters);
+// console.log(...str);
+// // We cannot use the Spread Operator in a template literal
+// // console.log(`${...str} Beraldi`);
 
-// Using the Spread Operator with functions (Real-World Example):
-const ingredients = [
-  // prompt("Let's make pasta! Ingredient 1?"),
-  // prompt('Ingredient 2?'),
-  // prompt('Ingredient 3?'),
-];
+// // Using the Spread Operator with functions (Real-World Example):
+// const ingredients = [
+//   // prompt("Let's make pasta! Ingredient 1?"),
+//   // prompt('Ingredient 2?'),
+//   // prompt('Ingredient 3?'),
+// ];
 
-restaurant.orderPasta(...ingredients);
+// restaurant.orderPasta(...ingredients);
 
-// Since ES 2018, the Spread Operator also works on objects, even though objects are not iterables
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
-console.log(newRestaurant);
+// // Since ES 2018, the Spread Operator also works on objects, even though objects are not iterables
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
+// console.log(newRestaurant);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name);
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name);
 
 //////////////////////////////////////
 // Destructuring Objects
