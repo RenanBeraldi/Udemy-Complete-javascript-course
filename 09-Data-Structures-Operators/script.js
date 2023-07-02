@@ -347,37 +347,57 @@ const restaurant = {
 // console.log(guestCorrect);
 
 ////////////////////////////////////////
-// The short-circuiting && and ||
+// Short-Circuiting (&& and ||)
 ////////////////////////////////////////
+// (---- OR ----)
+// Have only used logical operators only to combine boolean values. But the truth is that we can do a lot more with the AND and OR Operators.
+console.log(3 || 'Renan');
+// The result of this operation is 3, this means that the result of the OR operator doesn't always have to be a boolean.
+// There are 3 properties about Logical Operators:
+// 1st - Use ANY data type
+// 2nd - Return ANY data type
+// 3rd - They do short-circuiting (also called short circuit evaluation).
 
-// console.log('----- OR -----');
-// // Use ANY data type, return ANY data type, Short circuiting
-// console.log(3 || 'Jonas');
-// console.log('' || 'Jonas');
-// console.log(true || 0);
-// console.log(undefined || null);
+// In the case of the OR operator, short circuiting means that if the first value is a truthy value, it will immediately return that first value.
+console.log('' || 'Renan'); // empty string a falsy value
+console.log(true || 0); // the true is a truthy value
+console.log(undefined || null); // undefined is a falsy value
 
-// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// The result of this chain OR operation is 'Hello', essentially, because it is the first truthy value
+// In the OR operation, the result is TRUE, if at least one operand is TRUE
 
-// restaurant.numGuests = 23;
-// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-// console.log(guests1);
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-// const guests2 = restaurant.numGuests || 10;
-// console.log(guests2);
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+// This operation makes the variable guests2 receive the property numGuests, OR if it is undefined, receive the default value 10.
 
-// console.log('----- AND -----');
-// console.log(0 && 'Jonas');
-// console.log(7 && 'Jonas');
+// (---- AND ----)
+// The AND operator works in the exact opposite way of the OR operator.
+// The AND operator is only true if all the operands are true.
+console.log(0 && 'Renan');
+// The AND operator short circuits, when the first value is falsy. And then immediately returns that falsy value without even evaluating the second operand.
+console.log(7 && 'Renan');
+// The result of this operation is 'Renan', this means that the first value is truthy, and then the evaluation continues.
 
-// console.log('Hello' && 23 && null && 'Jonas');
+console.log('Hello' && 23 && null && 'Jonas');
 
-// // Pratical example
-// if (restaurant.orderPizza) {
-//   restaurant.orderPizza('mushrooms', 'spinach');
-// }
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
 
-// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// SUMMARY
+// The OR operator will return the first truthy value, or the last value, if all the operands are falsy.
+// We can use the OR operator to set default values.
+
+// The AND operator will return the first falsy value, or the last value, if all the operands are truthy.
+// We can use the AND operator to execute code in the second operand if the first one is true.
 
 ////////////////////////////////////////
 // Rest Pattern and Parameters
@@ -386,45 +406,45 @@ const restaurant = {
 
 // DESTRUCTURING
 // We know that is the Spread Operator because, it's being used on the right side of the Assignment Operator
-const arr = [1, 2, ...[3, 4]];
+// const arr = [1, 2, ...[3, 4]];
 
-// Rest, because on left side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
-// It's called Rest, because, it takes the remaining elements, of the array, that is not destructured in a variable. And put them in a new array.
+// // Rest, because on left side of =
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+// // It's called Rest, because, it takes the remaining elements, of the array, that is not destructured in a variable. And put them in a new array.
 
-// We can use the (...) on both sides of the assignment operator
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
-// It does not include any skipped elements, it's really just the rest of the elements. So, for that reason, the Rest Pattern always must be the last in the destructuring assignment. Because otherwise, how will JavaScript know until when it should collect the rest of the array?
-// There can only ever be one rest in any destructuring assignment
+// // We can use the (...) on both sides of the assignment operator
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
+// // It does not include any skipped elements, it's really just the rest of the elements. So, for that reason, the Rest Pattern always must be the last in the destructuring assignment. Because otherwise, how will JavaScript know until when it should collect the rest of the array?
+// // There can only ever be one rest in any destructuring assignment
 
-// The Rest Pattern also works in OBJECTS, the difference is that the remaining elements will be collected into a new object and not into a new array.
-const { sat, ...weekdays } = restaurant.openingHours;
+// // The Rest Pattern also works in OBJECTS, the difference is that the remaining elements will be collected into a new object and not into a new array.
+// const { sat, ...weekdays } = restaurant.openingHours;
 
-// FUNCTIONS
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-};
+// // FUNCTIONS
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// };
 
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 1, 4);
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
 
-// This is spread operator
-const x = [23, 5, 7];
-add(...x);
+// // This is spread operator
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onion', 'spinach', 'olives');
-// This function call below will give us a empty array, cause there is no declaration to the array otherIngredients.
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'spinach', 'olives');
+// // This function call below will give us a empty array, cause there is no declaration to the array otherIngredients.
+// restaurant.orderPizza('mushrooms');
 
 ////////////////////////////////////////
 // The Spread Operator
