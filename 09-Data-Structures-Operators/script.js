@@ -220,17 +220,28 @@ const restaurant = {
 ////////////////////////////////////////
 // Looping Arrays: The for-of loop
 ////////////////////////////////////////
-// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// To loop over an array, we use the for loop, we would have to go through all the steps of setting up a counter, a condition, and also update the counter. It's a lot of steps, that's why JS introduced the (for-of loop) in which don't need any of that. It's so much simpler.
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-// for (const item of menu) {
-//   console.log(item);
+for (const item of menu) console.log(item);
+// This loop, will automatically loop over the entire array and in each iteration, it will give us access to the current array element
+// We get each element of the array logged one by one. And that's because, the item variable is always the current element in each iteration.
+
+// What's also great about the for-of loop, is that we can use the continue and break keywords.
+
+// But what if we also wanted the current index and not just the current element? in the for-of loop, it's actually a bit of a pain when we need that index, because originally the for-of loop was really meant to give the current element. However, can get both. Have to call the method .entries()
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
 // }
 
-// for (const [i, el] of menu.entries()) {
-//   console.log(`${i + 1}: ${el}`);
-// }
+// As result, each item is now an array, containing the index and the element itself. All need to do is to use the destructure assignment
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
 
+// What is the .entries method?
 // console.log([...menu.entries()]);
+// As result we get an array, in each position, contains a new array, which contains the element and entity index number of that element
 
 ////////////////////////////////////////
 // Coding Challenge #1
@@ -307,16 +318,16 @@ const restaurant = {
 ////////////////////////////////////////
 // There are 3 logical assignment operators that were introduced in ES2021.
 
-const rest1 = {
-  name: 'Capri',
-  // numGuests: 20,
-  numGuests: 0,
-};
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
 
-const rest2 = {
-  name: 'La Piazza',
-  owner: 'Giovanni Rossi',
-};
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Giovanni Rossi',
+// };
 
 // The first thing that will me made is that we are going to set a default number of guests for all the restaurant objects that doesn't have that property
 
@@ -344,12 +355,12 @@ const rest2 = {
 // The value returned is <ANONYMOUS>, because of short circuiting. In the particular case of the AND operator, it short circuits when the first value is falsy and then immediately returns that falsy value.
 // In this operation, the first value is truthy, then the second value will then actually be evaluated and returned.
 
-rest1.owner &&= 'ANONYMOUS'; // Is the same as (rest1.owner = rest1.owner && '<ANONYMOUS>')
-rest2.owner &&= 'ANONYMOUS';
-// In the operation of rest1, doesn't return nothing, in the operation only with short circuiting, the value returned is undefined, which was not really what we wanted. Basically, what the logical AND assignment operator does is assign a value to a variable if it's currently truthy.
+// rest1.owner &&= 'ANONYMOUS'; // Is the same as (rest1.owner = rest1.owner && '<ANONYMOUS>')
+// rest2.owner &&= 'ANONYMOUS';
+// // In the operation of rest1, doesn't return nothing, in the operation only with short circuiting, the value returned is undefined, which was not really what we wanted. Basically, what the logical AND assignment operator does is assign a value to a variable if it's currently truthy.
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 ////////////////////////////////////////
 // Nullish Coalescing Operator (??)
 ////////////////////////////////////////
