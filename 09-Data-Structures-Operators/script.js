@@ -336,63 +336,68 @@ const restaurant = {
 // console.log(rest2);
 
 ////////////////////////////////////////
-// The Nullish Coalescing Operator (??)
+// Nullish Coalescing Operator (??)
 ////////////////////////////////////////
-// restaurant.numGuests = 0;
-// const guests = restaurant.numGuests || 10;
-// console.log(guests);
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
 
-// // Nullish: null and undefined (NOT 0 or '')
-// const guestCorrect = restaurant.numGuests ?? 10;
-// console.log(guestCorrect);
+// 0 is a falsy value, but we want a solution that we want to see the number of the guests as 0, not the default value that is being set by the short circuiting with the OR operator.
+// The solution for this problem, is to use the Nullish Coalescing Operator. It works almost the same way as the OR operator.
+
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+// Why does this work? It works with the idea or with the concept of NULLISH VALUES instead of FALSY VALUES
+// Nullish Values: null and undefined. It doesn't include 0 or ''.
 
 ////////////////////////////////////////
 // Short-Circuiting (&& and ||)
 ////////////////////////////////////////
 // (---- OR ----)
 // Have only used logical operators only to combine boolean values. But the truth is that we can do a lot more with the AND and OR Operators.
-console.log(3 || 'Renan');
-// The result of this operation is 3, this means that the result of the OR operator doesn't always have to be a boolean.
-// There are 3 properties about Logical Operators:
-// 1st - Use ANY data type
-// 2nd - Return ANY data type
-// 3rd - They do short-circuiting (also called short circuit evaluation).
+// console.log(3 || 'Renan');
+// // The result of this operation is 3, this means that the result of the OR operator doesn't always have to be a boolean.
+// // There are 3 properties about Logical Operators:
+// // 1st - Use ANY data type
+// // 2nd - Return ANY data type
+// // 3rd - They do short-circuiting (also called short circuit evaluation).
 
-// In the case of the OR operator, short circuiting means that if the first value is a truthy value, it will immediately return that first value.
-console.log('' || 'Renan'); // empty string a falsy value
-console.log(true || 0); // the true is a truthy value
-console.log(undefined || null); // undefined is a falsy value
+// // In the case of the OR operator, short circuiting means that if the first value is a truthy value, it will immediately return that first value.
+// console.log('' || 'Renan'); // empty string a falsy value
+// console.log(true || 0); // the true is a truthy value
+// console.log(undefined || null); // undefined is a falsy value
 
-console.log(undefined || 0 || '' || 'Hello' || 23 || null);
-// The result of this chain OR operation is 'Hello', essentially, because it is the first truthy value
-// In the OR operation, the result is TRUE, if at least one operand is TRUE
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// // The result of this chain OR operation is 'Hello', essentially, because it is the first truthy value
+// // In the OR operation, the result is TRUE, if at least one operand is TRUE
 
-restaurant.numGuests = 0;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
-// This operation makes the variable guests2 receive the property numGuests, OR if it is undefined, receive the default value 10.
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+// // This operation makes the variable guests2 receive the property numGuests, OR if it is undefined, receive the default value 10.
 
-// (---- AND ----)
-// The AND operator works in the exact opposite way of the OR operator.
-// The AND operator is only true if all the operands are true.
-console.log(0 && 'Renan');
-// The AND operator short circuits, when the first value is falsy. And then immediately returns that falsy value without even evaluating the second operand.
-console.log(7 && 'Renan');
-// The result of this operation is 'Renan', this means that the first value is truthy, and then the evaluation continues.
+// // (---- AND ----)
+// // The AND operator works in the exact opposite way of the OR operator.
+// // The AND operator is only true if all the operands are true.
+// console.log(0 && 'Renan');
+// // The AND operator short circuits, when the first value is falsy. And then immediately returns that falsy value without even evaluating the second operand.
+// console.log(7 && 'Renan');
+// // The result of this operation is 'Renan', this means that the first value is truthy, and then the evaluation continues.
 
-console.log('Hello' && 23 && null && 'Jonas');
+// console.log('Hello' && 23 && null && 'Jonas');
 
-// Practical example
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
+// // Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-// SUMMARY
+// ------ SUMMARY ------
 // The OR operator will return the first truthy value, or the last value, if all the operands are falsy.
 // We can use the OR operator to set default values.
 
