@@ -305,48 +305,63 @@ const restaurant = {
 ////////////////////////////////////////
 // Logical Assignment Operators
 ////////////////////////////////////////
+// There are 3 logical assignment operators that were introduced in ES2021.
 
-// const rest1 = {
-//   name: 'Capri',
-//   numGuests: 0,
-// };
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
 
-// const rest2 = {
-//   name: 'La Piazza',
-//   owner: 'Giovanni Rossi',
-// };
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
 
-// // OR assignment operator
-// // rest1.numGuests = rest1.numGuests || 10;
-// // rest2.numGuests = rest2.numGuests || 10;
-// // rest1.numGuests ||= 10;
-// // rest2.numGuests ||= 10;
+// The first thing that will me made is that we are going to set a default number of guests for all the restaurant objects that doesn't have that property
 
-// // NULLISH assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// This operations creates the property numGuest in the object rest2, if rest2.numGuests doesn't exists, will be the default value 10.
+
+// ---- OR ASSIGNMENT OPERATOR ----
+// With the OR Assignment Operator, we will be able to write the same thing basically, in a more concise way.
+//rest1.numGuests ||= 10; // Is the same of writing this: rest1.numGuests = rest1.numGuests || 10;
+//rest2.numGuests ||= 10;
+// This operator assigns a value to a variable if that variable is currently falsy.
+
+// ---- NULLISH ASSIGNMENT OPERATOR ----
+// setting the numGuests: 0, if we load the code, we have the default value being showed, that happens because the 0 is a falsy value
 // rest1.numGuests ??= 10;
 // rest2.numGuests ??= 10;
+// This operator assigns a value to a variable if that variable is currently nullish.
 
-// // AND assignment operator
-// // rest1.owner = rest1.owner && '<ANONYMOUS>';
-// // rest2.owner = rest2.owner && '<ANONYMOUS>';
-// rest1.owner &&= '<ANONYMOUS>';
-// rest2.owner &&= '<ANONYMOUS>';
+// ---- AND ASSIGNMENT OPERATOR ----
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// In this operation, the value returned is "undefined", because the rest1.owner is falsy, it doesn't exist, then is the value returned
 
-// console.log(rest1);
-// console.log(rest2);
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+// The value returned is <ANONYMOUS>, because of short circuiting. In the particular case of the AND operator, it short circuits when the first value is falsy and then immediately returns that falsy value.
+// In this operation, the first value is truthy, then the second value will then actually be evaluated and returned.
 
+rest1.owner &&= 'ANONYMOUS'; // Is the same as (rest1.owner = rest1.owner && '<ANONYMOUS>')
+rest2.owner &&= 'ANONYMOUS';
+// In the operation of rest1, doesn't return nothing, in the operation only with short circuiting, the value returned is undefined, which was not really what we wanted. Basically, what the logical AND assignment operator does is assign a value to a variable if it's currently truthy.
+
+console.log(rest1);
+console.log(rest2);
 ////////////////////////////////////////
 // Nullish Coalescing Operator (??)
 ////////////////////////////////////////
-restaurant.numGuests = 0;
-const guests = restaurant.numGuests || 10;
-console.log(guests);
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
 
 // 0 is a falsy value, but we want a solution that we want to see the number of the guests as 0, not the default value that is being set by the short circuiting with the OR operator.
 // The solution for this problem, is to use the Nullish Coalescing Operator. It works almost the same way as the OR operator.
 
-const guestsCorrect = restaurant.numGuests ?? 10;
-console.log(guestsCorrect);
+// const guestsCorrect = restaurant.numGuests ?? 10;
+// console.log(guestsCorrect);
 
 // Why does this work? It works with the idea or with the concept of NULLISH VALUES instead of FALSY VALUES
 // Nullish Values: null and undefined. It doesn't include 0 or ''.
