@@ -3,6 +3,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855 12:30';
 
+const weekdays = ['mon', 'tues', 'wed', 'thu', ' fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -10,43 +26,25 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    address,
-    time = '20:00',
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, address, time = '20:00' }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]}, and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
@@ -188,42 +186,44 @@ const restaurant = {
 ////////////////////////////////////////
 // Optional Chaining
 ////////////////////////////////////////
-// if (restaurant.openingHours && restaurant.openingHours.mon) {
-//   console.log(restaurant.openingHours.mon.open);
-// }
 
-// // WITH Optional Chaining
-// console.log(restaurant.openingHours.mon?.open);
-// console.log(restaurant.openingHours?.mon?.open);
+////////////////////////////////////////
+// Enhanced Object Literals
+////////////////////////////////////////
+// The object restaurant is an object literal, that's why we wrote this object in the code using the curly braces '{}' syntax. ES6 introduced 3 ways, which make it easier to write object literals like this.
+// First thing, let's suppose that we have an object that is out of the restaurant object, the openingHours:
+/* 
+  const openingHours = {
+    ...
+  }
+  const restaurant = {
+    ...
+  }
+*/
+// But we still want to have the openingHours object inside of the restaurant
+// Before ES6, we had to make like this, inside the restaurant object: (openingHours: openingHours,).
+// In ES6, we just need to write (openingHours,). And that's it, the object will be putted inside the restaurant object and create a property name with exactly that variable name.
 
-// // Example
-// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-// for (const day of days) {
-//   const open = restaurant.openingHours[day]?.open ?? 'closed';
-//   // console.log(`On ${day}, we open at ${open}`);
-//   if (open === 'closed') {
-//     console.log(`On ${day}, we are closed`);
-//   } else {
-//     console.log(`On ${day}, we open at ${open}`);
-//   }
-// }
+// The second part of Enhancing, is about writing methods. In ES6 we no longer have to create a property and then set it to a function expression.
+/* What we need to do is take off the word function and the semicolon:
+order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+} */
 
-// // Methods
-// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'); // Method does not exist
-
-// // Arrays
-// const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
-
-// console.log(users[0]?.name ?? 'User array empty');
+// And the third Enhancement is that we can now actually compute property names instead of having to write them out manually and literally. And compute just means like calculate.
+/* Let's write an array with all te weekdays out of the restaurant object. And we want to change the property names inside of the openingHours object by the elements of the array. We can do that by using the square bracket syntax.
+  const openingHours = {
+  [weekdays[3]]: {
+*/
+// We can compute the property name like this as well: [`day-${2 + 4}`];
 
 ////////////////////////////////////////
 // Looping Arrays: The for-of loop
 ////////////////////////////////////////
 // To loop over an array, we use the for loop, we would have to go through all the steps of setting up a counter, a condition, and also update the counter. It's a lot of steps, that's why JS introduced the (for-of loop) in which don't need any of that. It's so much simpler.
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of menu) console.log(item);
+// for (const item of menu) console.log(item);
 // This loop, will automatically loop over the entire array and in each iteration, it will give us access to the current array element
 // We get each element of the array logged one by one. And that's because, the item variable is always the current element in each iteration.
 
@@ -235,9 +235,9 @@ for (const item of menu) console.log(item);
 // }
 
 // As result, each item is now an array, containing the index and the element itself. All need to do is to use the destructure assignment
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-}
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
 
 // What is the .entries method?
 // console.log([...menu.entries()]);
