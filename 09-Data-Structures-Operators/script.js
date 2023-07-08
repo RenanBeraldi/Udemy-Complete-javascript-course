@@ -3,7 +3,7 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855 12:30';
 
-const weekdays = ['mon', 'tues', 'wed', 'thu', ' fri', 'sat', 'sun'];
+const weekdays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
   [weekdays[3]]: {
     open: 12,
@@ -159,28 +159,34 @@ const restaurant = {
 ////////////////////////////////////////
 // Looping Objects: Object Keys, Values, Entries
 ////////////////////////////////////////
+// We have different options here, depending on what exactly we want to loop over. So do we want to loop over the object, property names, over the values or both together.
 
-// Property NAMES
+// PROPERTY NAMES (keys)
 // const properties = Object.keys(openingHours);
 // console.log(properties);
-
-// let openStr = `We are open on ${properties.length} days: `;
+// // As result of this operation, is an array with the three property names.
+// // And we can use this to compute how many properties are in the object. Let's say that we want to print an string to say how many days the restaurant is open.
+// let openStr = `The restaurant is open ${properties.length} days per week: `;
 
 // for (const day of properties) {
 //   openStr += `${day}, `;
 // }
 // console.log(openStr);
 
-// // Property VALUES
+// // PROPERTY VALUES (values)
 // const values = Object.values(openingHours);
 // console.log(values);
 
-// // Entire Object
+// // ENTIRE OBJECT (entries)
+// // But now to really simulate, to loop over the entire object, we actually need the entries. And so entries is basically names + values together.
+// // The entries on arrays, it returns the index number + the value itself.
+
 // const entries = Object.entries(openingHours);
 // console.log(entries);
-
-// for (const [key, { open, close }] of entries) {
-//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// // We now get an array. So all of these keys, values and entries basically transformed the object into an array. And in each position of the array, we have an array as value, with first the key and then the value:
+// // We can use destructuring when we loop over the array.
+// for (const [day, { open, close }] of entries) {
+//   console.log(`On ${day} we open at ${open} and close at ${close}`);
 // }
 
 ////////////////////////////////////////
@@ -196,49 +202,49 @@ const restaurant = {
 
 // It's not a big deal to add this logic, but it does make the code a little bit more unreadable and more messy. However, this is checking just for one property. So just for Monday. But now imagine that openingHours would also be optional, in other words, that the restaurant object can also not have the property openingHours.
 
-if (restaurant.openingHours && restaurant.openingHours.mon) {
-  console.log(restaurant.openingHours.mon.open);
-}
+// if (restaurant.openingHours && restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
 
-// This can get out of hand pretty quickly when we have deeply nested objects with lots of optional properties.
-// And so therefore ES2020 introduced a great solution for this, which is a feature called "optional chaining". And with optional chaining, if a certain property doesn't exist, then undefined is returned immediately. And so that will then avoid that kind of error.
+// // This can get out of hand pretty quickly when we have deeply nested objects with lots of optional properties.
+// // And so therefore ES2020 introduced a great solution for this, which is a feature called "optional chaining". And with optional chaining, if a certain property doesn't exist, then undefined is returned immediately. And so that will then avoid that kind of error.
 
-// WITH Optional Chaining
-console.log(restaurant.openingHours.mon?.open);
+// // WITH Optional Chaining
+// console.log(restaurant.openingHours.mon?.open);
 
-// So only if the property that is BEFORE the "?", only if mon exists, then this open property will be read from there. But if not, then immediately undefined will be returned. And exists here actually the nullish concept. A property exists if it's not null and not undefined.
+// // So only if the property that is BEFORE the "?", only if mon exists, then this open property will be read from there. But if not, then immediately undefined will be returned. And exists here actually the nullish concept. A property exists if it's not null and not undefined.
 
-console.log(restaurant.openingHours?.mon?.open);
-// And now, if restaurant.openingHours does not even exist, well, then the "mon" property will not even be read and so therefore we don't get that error.
+// console.log(restaurant.openingHours?.mon?.open);
+// // And now, if restaurant.openingHours does not even exist, well, then the "mon" property will not even be read and so therefore we don't get that error.
 
-// EXAMPLE
-const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// // EXAMPLE
+// const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-// What will be done is to loop over this array and then log to the console, whether the restaurant is open or closed on each of the days
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`);
-}
-// day is not a property of openingHours, that's why we use the bracket notation.
-// We had a problem on sat, cause it opens at 0, then we use the nullish coalescing operator, that works only with Null and Undefined values.
+// // What will be done is to loop over this array and then log to the console, whether the restaurant is open or closed on each of the days
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+// // day is not a property of openingHours, that's why we use the bracket notation.
+// // We had a problem on sat, cause it opens at 0, then we use the nullish coalescing operator, that works only with Null and Undefined values.
 
-// METHODS
-console.log(restaurant.order?.(0, 1) ?? 'Methods does not exist.');
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Methods does not exist.');
+// // METHODS
+// console.log(restaurant.order?.(0, 1) ?? 'Methods does not exist.');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Methods does not exist.');
 
-// ARRAYS
-// We can check basically if an array is empty.
-const users = [{ name: 'Renan', email: 'hello@renan.io' }];
-// const users = [];
+// // ARRAYS
+// // We can check basically if an array is empty.
+// const users = [{ name: 'Renan', email: 'hello@renan.io' }];
+// // const users = [];
 
-// To get the 'name' of the first element of this array, we can do this.
-console.log(users[0]?.name ?? 'User array empty');
+// // To get the 'name' of the first element of this array, we can do this.
+// console.log(users[0]?.name ?? 'User array empty');
 
-// Without Optional Chaining:
-if (users.length > 0) console.log(users[0].name);
-else console.log('User array empty');
+// // Without Optional Chaining:
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('User array empty');
 
-// We use optional chaining together with the nullish coalescing operator so that we can actually do something in case we don't get a result from the object or from the array 
+// We use optional chaining together with the nullish coalescing operator so that we can actually do something in case we don't get a result from the object or from the array
 
 ////////////////////////////////////////
 // Enhanced Object Literals
