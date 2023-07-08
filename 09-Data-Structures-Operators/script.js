@@ -186,6 +186,59 @@ const restaurant = {
 ////////////////////////////////////////
 // Optional Chaining
 ////////////////////////////////////////
+// Let's suppose that we want to get the opening hours out of restaurant for Monday. But this property doesn't exist, that is undefined.
+// But let's pretend that we do not know whether this restaurant opens on Monday or not. And that could be the case for example, if this data came from a real web service (API).
+// With this operation gets an error, (restaurant.openingHours.mon) is undefined, and undefined.open get's an error. To avoid this type of error, we would first have to check if this (restaurant.openingHours.mon) actually exists.
+
+// if (restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
+
+// It's not a big deal to add this logic, but it does make the code a little bit more unreadable and more messy. However, this is checking just for one property. So just for Monday. But now imagine that openingHours would also be optional, in other words, that the restaurant object can also not have the property openingHours.
+
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+// This can get out of hand pretty quickly when we have deeply nested objects with lots of optional properties.
+// And so therefore ES2020 introduced a great solution for this, which is a feature called "optional chaining". And with optional chaining, if a certain property doesn't exist, then undefined is returned immediately. And so that will then avoid that kind of error.
+
+// WITH Optional Chaining
+console.log(restaurant.openingHours.mon?.open);
+
+// So only if the property that is BEFORE the "?", only if mon exists, then this open property will be read from there. But if not, then immediately undefined will be returned. And exists here actually the nullish concept. A property exists if it's not null and not undefined.
+
+console.log(restaurant.openingHours?.mon?.open);
+// And now, if restaurant.openingHours does not even exist, well, then the "mon" property will not even be read and so therefore we don't get that error.
+
+// EXAMPLE
+const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// What will be done is to loop over this array and then log to the console, whether the restaurant is open or closed on each of the days
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+// day is not a property of openingHours, that's why we use the bracket notation.
+// We had a problem on sat, cause it opens at 0, then we use the nullish coalescing operator, that works only with Null and Undefined values.
+
+// METHODS
+console.log(restaurant.order?.(0, 1) ?? 'Methods does not exist.');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Methods does not exist.');
+
+// ARRAYS
+// We can check basically if an array is empty.
+const users = [{ name: 'Renan', email: 'hello@renan.io' }];
+// const users = [];
+
+// To get the 'name' of the first element of this array, we can do this.
+console.log(users[0]?.name ?? 'User array empty');
+
+// Without Optional Chaining:
+if (users.length > 0) console.log(users[0].name);
+else console.log('User array empty');
+
+// We use optional chaining together with the nullish coalescing operator so that we can actually do something in case we don't get a result from the object or from the array 
 
 ////////////////////////////////////////
 // Enhanced Object Literals
@@ -268,95 +321,95 @@ Suppose we get data from a web service about a certain game (below). In this cha
 TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
 */
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
 
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
-// Task 1
-// const players1 = [...game.players[0]];
-// const players2 = [...game.players[1]];
-// Using Destructuring
-const [players1, players2] = game.players;
-// console.log(players1, players2);
+// // Task 1
+// // const players1 = [...game.players[0]];
+// // const players2 = [...game.players[1]];
+// // Using Destructuring
+// const [players1, players2] = game.players;
+// // console.log(players1, players2);
 
-// Task 2
-const [gk, ...fieldPlayers] = players1;
-// console.log(gk, fieldPlayers);
+// // Task 2
+// const [gk, ...fieldPlayers] = players1;
+// // console.log(gk, fieldPlayers);
 
-// Task 3
-const allPlayers = [...players1, ...players2];
-// console.log(allPlayers);
+// // Task 3
+// const allPlayers = [...players1, ...players2];
+// // console.log(allPlayers);
 
-// Task 4
-const finalPlayers = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-// console.log(finalPlayers);
+// // Task 4
+// const finalPlayers = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // console.log(finalPlayers);
 
-// Task 5
-/*
-const team1 = game.odds.team1;
-const draw = game.odds.x;
-const team2 = game.odds.team2;
-*/
-// Using Destructuring
-// const { team1, x: draw, team2 } = game.odds;
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-// console.log(team1, draw, team2);
+// // Task 5
+// /*
+// const team1 = game.odds.team1;
+// const draw = game.odds.x;
+// const team2 = game.odds.team2;
+// */
+// // Using Destructuring
+// // const { team1, x: draw, team2 } = game.odds;
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// // console.log(team1, draw, team2);
 
-// Task 6
-const printGoals = function (...players) {
-  let pl = 0;
-  for (let i = 0; i < players.length; i++) {
-    console.log(`Player that made a goal ${players[i]}`);
-    pl += 1;
-  }
-  console.log(`The quantity of goals were ${pl}`);
-};
+// // Task 6
+// const printGoals = function (...players) {
+//   let pl = 0;
+//   for (let i = 0; i < players.length; i++) {
+//     console.log(`Player that made a goal ${players[i]}`);
+//     pl += 1;
+//   }
+//   console.log(`The quantity of goals were ${pl}`);
+// };
 
-printGoals(...game.scored);
+// printGoals(...game.scored);
 
-// Task 7
-team1 < team2 && console.log('Team 1 is more likely to win');
-team2 < team1 && console.log('Team 2 is more likely to win');
+// // Task 7
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team2 < team1 && console.log('Team 2 is more likely to win');
 
 ////////////////////////////////////////
 // Logical Assignment Operators
