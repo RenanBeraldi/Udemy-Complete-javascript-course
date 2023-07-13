@@ -49,6 +49,53 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+////////////////////////////////////////
+// Maps: Iteration
+////////////////////////////////////////
+// There is another way of populating a new map without having to use the set method. The set method is a bit cumbersome when there are a lot of values to set. So instead, we can create a new map like this.
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again'],
+]);
+console.log(question);
+
+// When creating a new map from scratch, directly in the code, this way is better. But when we keep adding new elements, programmatically using code. Then, the set method is still the way to go.
+
+// This structure, this arrays of arrays is exactly the same structure that is returned of calling Object.entries(). Where the first element is the key and the second one is the value.
+console.log(Object.entries(openingHours));
+
+// This means that there is an easy way to convert objects to maps.
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Iteration:
+// Iteration is possible on maps as we already know, maps are also iterables. And so, the for loop is also available for them.
+
+// Quiz App
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+const answer = 3;
+// const answer = Number(prompt('Your answer?'));
+// Start comparing the answer
+console.log(question.get(question.get('correct') === answer)); // This will return true, and since this is true, we can directly plug that into the map
+
+// Sometimes we also need to convert a map back to an array.
+console.log([...question]); // Using the spread operator.
+console.log([...question.entries()]); // is the same as the one is above.
+console.log([...question.keys()]);
+console.log([...question.values()]);
+
 ////////////////////////////////////////
 // Maps: Fundamentals
 ////////////////////////////////////////
