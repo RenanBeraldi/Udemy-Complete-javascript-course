@@ -51,50 +51,76 @@ const restaurant = {
 };
 
 ////////////////////////////////////////
+// Summary: Which Data Structure to Use?
+////////////////////////////////////////
+
+// Arrays vs. Sets and Objects vs. Maps
+
+// ------- Arrays vs. Sets -------
+// We use arrays or sets when we need a simple list of values and when we do not need to describe the values
+// We should use arrays whenever we need to store values in order and when these values might contain duplicates. And we should also use arrays when we need to manipulate data, because there are a ton of arrays methods.
+
+// Sets, on the other hand, should only be used when we are working with unique values, besides that we can also use sets in situations when high performance is really important, because operations like searching for an item or deleting an item from a set can be up to 10 times faster in sets than in arrays. A great use case for sets is to remove duplicates from arrays.
+// Sets are not meant to replace arrays but rather to compliment them whenever we are dealing with unique values.
+
+// ------- Objects vs. Maps -------
+// We use these key value data structures whenever we need to describe the values using keys.
+
+// Objects have been the traditional key value data structure simply because we didn't have maps before ES6. But using objects simply as key value stores has a couple of technical disadvantages.
+
+// Maps on the other hand, are way better suited for simple key value stores, because they offer better performance in fact. Also, map keys can have any data type, and they're also easy to iterate, and it's easy to compute the size of a map.
+
+// The biggest advantage of objects is how easy it is to write them and to access data by simply using the dot or the brackets operator.
+
+// We should use maps when we simply need to maps keys to values, and also when we need keys that are not strings.
+
+// And if we need functions as values then we should absolutely use and object for that. In objects, these functions are then called methods and we can use the "this keyword" to access properties of the same object, which is impossible in maps. And working with JSON data we probable be using objects for that as well unless we then want to convert the objects to maps, but that's usually not something that we do. 
+
+////////////////////////////////////////
 // Maps: Iteration
 ////////////////////////////////////////
 // There is another way of populating a new map without having to use the set method. The set method is a bit cumbersome when there are a lot of values to set. So instead, we can create a new map like this.
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct'],
-  [false, 'Try Again'],
-]);
-console.log(question);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct'],
+//   [false, 'Try Again'],
+// ]);
+// console.log(question);
 
-// When creating a new map from scratch, directly in the code, this way is better. But when we keep adding new elements, programmatically using code. Then, the set method is still the way to go.
+// // When creating a new map from scratch, directly in the code, this way is better. But when we keep adding new elements, programmatically using code. Then, the set method is still the way to go.
 
-// This structure, this arrays of arrays is exactly the same structure that is returned of calling Object.entries(). Where the first element is the key and the second one is the value.
-console.log(Object.entries(openingHours));
+// // This structure, this arrays of arrays is exactly the same structure that is returned of calling Object.entries(). Where the first element is the key and the second one is the value.
+// console.log(Object.entries(openingHours));
 
-// This means that there is an easy way to convert objects to maps.
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+// // This means that there is an easy way to convert objects to maps.
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
 
-// Iteration:
-// Iteration is possible on maps as we already know, maps are also iterables. And so, the for loop is also available for them.
+// // Iteration:
+// // Iteration is possible on maps as we already know, maps are also iterables. And so, the for loop is also available for them.
 
-// Quiz App
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key === 'number') {
-    console.log(`Answer ${key}: ${value}`);
-  }
-}
-const answer = 3;
-// const answer = Number(prompt('Your answer?'));
-// Start comparing the answer
-console.log(question.get(question.get('correct') === answer)); // This will return true, and since this is true, we can directly plug that into the map
+// // Quiz App
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
+// }
+// const answer = 3;
+// // const answer = Number(prompt('Your answer?'));
+// // Start comparing the answer
+// console.log(question.get(question.get('correct') === answer)); // This will return true, and since this is true, we can directly plug that into the map
 
-// Sometimes we also need to convert a map back to an array.
-console.log([...question]); // Using the spread operator.
-console.log([...question.entries()]); // is the same as the one is above.
-console.log([...question.keys()]);
-console.log([...question.values()]);
+// // Sometimes we also need to convert a map back to an array.
+// console.log([...question]); // Using the spread operator.
+// console.log([...question.entries()]); // is the same as the one is above.
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
 
 ////////////////////////////////////////
 // Maps: Fundamentals
