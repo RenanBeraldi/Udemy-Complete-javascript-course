@@ -50,58 +50,132 @@ const restaurant = {
   },
 };
 ////////////////////////////////////////
-// Working with Strings
+// Working with Strings - Part 2
 ////////////////////////////////////////
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
 
-// Just like arrays, we can get the character of a string at a certain position
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log('B737'[0]);
+// The first two methods are gonna be for changing the case of a string.
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
 
-// We can also read the length property of strings
-console.log(airline.length);
-console.log('B737'.length);
+// They can call be directly also on a string.
+console.log('renan'.toUpperCase());
 
-// Strings also have methods
-console.log(airline.indexOf('r')); // We get the position of a certain letter inside the string
-console.log(airline.lastIndexOf('r')); // The last position of a certain letter inside the string
-console.log(airline.indexOf('Portugal')); // Returning the position of the string (it is case sensitive)
+// Fix capitalization in name
+const passenger = 'rEnAN'; // Renan
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
 
-// One good use case of these indexes is to extract part of a string using the slice method. And the slice method needs indexes as arguments.
-console.log(airline.slice(4)); // Begin parameter
-// This method returns a substring, because it's just a part of the original string. This does not change the underlying string. It's actually impossible to mutate strings, they are primitives.
-// If we want to use this string returned, we would had store it in a variable or data structure.
-console.log(airline.slice(4, 7)); // End parameter
+// Comparing e-mail
+const email = 'hello@renan.io';
+const loginEmail = '   Hello@Renan.Io \n';
 
-console.log(airline.slice(0, airline.indexOf(' '))); // How to get the first word
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // How to get the last word. This + 1 is included because the space is included in the returned string, and the + 1 removes it.
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim(); // To remove white spaces.
+console.log(trimmedEmail);
 
-console.log(airline.slice(-2)); // With this negative value, it starts counting from the end.
-console.log(airline.slice(1, -1)); // This cuts off the first and the last character
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
 
-// Let's write a function that receives an airplane seat and logs to the console whether it is a middle seat or not.
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  const middleOrNot =
-    s === 'B' || s === 'E' ? 'You got the middle seat' : 'You got lucky';
-  console.log(middleOrNot);
+// Since ES2019, there's also trim start and trim end, which as their names say, you can use to trim white space only from the start of the string or only from the end.
+
+// Replacing
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceGB);
+console.log(priceUS);
+
+// This method creates a new string, does not mutate the original one.
+// This method is case sensitive
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+
+// With regular expression
+console.log(announcement.replace(/door/g, 'gate')); // g stands for global
+
+// Booleans
+// (includes, startsWith, endsWith)
+const newPlane = 'Airbus A320neo';
+console.log(newPlane.includes('A320'));
+console.log(newPlane.includes('Boeing'));
+console.log(newPlane.startsWith('Air'));
+
+if (newPlane.startsWith('Airbus') && newPlane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+// Practice Exercise
+//  We want to check if the baggage of a certain passenger is allowed to be checked-in
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('you are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard');
+  }
 };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('2E');
+checkBaggage('I have a Laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
 
-// String are primitives, and why do they have methods? Shouldn't methods only be available on objects such as arrays? It is true, however JavaScript is really smart. Whenever we call a method on a string, JavaScript will automatically behind the scenes convert that string primitive to a string object with the same content. And then, it's on that object where the methods are called. THIS PROCESS IS CALLED BOXING
+////////////////////////////////////////
+// Working with Strings - Part 1
+////////////////////////////////////////
+// Just like arrays, we can get the character of a string at a certain position
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
 
-console.log(new String('renan'));
-console.log(typeof new String('renan'));
+// // We can also read the length property of strings
+// console.log(airline.length);
+// console.log('B737'.length);
 
-// All string methods return primitives, even if called on a string object.
-console.log(typeof new String('renan').slice(1));
+// // Strings also have methods
+// console.log(airline.indexOf('r')); // We get the position of a certain letter inside the string
+// console.log(airline.lastIndexOf('r')); // The last position of a certain letter inside the string
+// console.log(airline.indexOf('Portugal')); // Returning the position of the string (it is case sensitive)
+
+// // One good use case of these indexes is to extract part of a string using the slice method. And the slice method needs indexes as arguments.
+// console.log(airline.slice(4)); // Begin parameter
+// // This method returns a substring, because it's just a part of the original string. This does not change the underlying string. It's actually impossible to mutate strings, they are primitives.
+// // If we want to use this string returned, we would had store it in a variable or data structure.
+// console.log(airline.slice(4, 7)); // End parameter
+
+// console.log(airline.slice(0, airline.indexOf(' '))); // How to get the first word
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // How to get the last word. This + 1 is included because the space is included in the returned string, and the + 1 removes it.
+
+// console.log(airline.slice(-2)); // With this negative value, it starts counting from the end.
+// console.log(airline.slice(1, -1)); // This cuts off the first and the last character
+
+// // Let's write a function that receives an airplane seat and logs to the console whether it is a middle seat or not.
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   const middleOrNot =
+//     s === 'B' || s === 'E' ? 'You got the middle seat' : 'You got lucky';
+//   console.log(middleOrNot);
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('2E');
+
+// // String are primitives, and why do they have methods? Shouldn't methods only be available on objects such as arrays? It is true, however JavaScript is really smart. Whenever we call a method on a string, JavaScript will automatically behind the scenes convert that string primitive to a string object with the same content. And then, it's on that object where the methods are called. THIS PROCESS IS CALLED BOXING
+
+// console.log(new String('renan'));
+// console.log(typeof new String('renan'));
+
+// // All string methods return primitives, even if called on a string object.
+// console.log(typeof new String('renan').slice(1));
 
 ////////////////////////////////////////
 // Summary: Which Data Structure to Use?
