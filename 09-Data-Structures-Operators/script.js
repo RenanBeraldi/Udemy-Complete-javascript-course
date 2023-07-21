@@ -50,83 +50,138 @@ const restaurant = {
   },
 };
 ////////////////////////////////////////
-// Working with Strings - Part 2
+// Working with Strings - Part 3
 ////////////////////////////////////////
-const airline = 'TAP Air Portugal';
 
-// The first two methods are gonna be for changing the case of a string.
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
+// Split and join
+// split Method allows us to split a string into multiple parts based on a divider string
+console.log('a+very+nice+string'.split('+'));
+console.log('Renan Beraldi'.split(' '));
 
-// They can call be directly also on a string.
-console.log('renan'.toUpperCase());
+const [firstName, lastName] = 'Renan Beraldi'.split(' ');
 
-// Fix capitalization in name
-const passenger = 'rEnAN'; // Renan
-const passengerLower = passenger.toLowerCase();
-const passengerCorrect =
-  passengerLower[0].toUpperCase() + passengerLower.slice(1);
-console.log(passengerCorrect);
+const newName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
 
-// Comparing e-mail
-const email = 'hello@renan.io';
-const loginEmail = '   Hello@Renan.Io \n';
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
 
-const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim(); // To remove white spaces.
-console.log(trimmedEmail);
-
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail);
-console.log(email === normalizedEmail);
-
-// Since ES2019, there's also trim start and trim end, which as their names say, you can use to trim white space only from the start of the string or only from the end.
-
-// Replacing
-const priceGB = '288,97£';
-const priceUS = priceGB.replace('£', '$').replace(',', '.');
-console.log(priceGB);
-console.log(priceUS);
-
-// This method creates a new string, does not mutate the original one.
-// This method is case sensitive
-
-const announcement =
-  'All passengers come to boarding door 23. Boarding door 23!';
-
-console.log(announcement.replace('door', 'gate'));
-console.log(announcement.replaceAll('door', 'gate'));
-
-// With regular expression
-console.log(announcement.replace(/door/g, 'gate')); // g stands for global
-
-// Booleans
-// (includes, startsWith, endsWith)
-const newPlane = 'Airbus A320neo';
-console.log(newPlane.includes('A320'));
-console.log(newPlane.includes('Boeing'));
-console.log(newPlane.startsWith('Air'));
-
-if (newPlane.startsWith('Airbus') && newPlane.endsWith('neo')) {
-  console.log('Part of the NEW Airbus family');
-}
-
-// Practice Exercise
-//  We want to check if the baggage of a certain passenger is allowed to be checked-in
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase();
-  if (baggage.includes('knife') || baggage.includes('gun')) {
-    console.log('you are NOT allowed on board');
-  } else {
-    console.log('Welcome aboard');
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
   }
+  console.log(namesUpper.join(' '));
 };
 
-checkBaggage('I have a Laptop, some Food and a pocket Knife');
-checkBaggage('Socks and camera');
-checkBaggage('Got some snacks and a gun for protection');
+capitalizeName('jessica ann smith davis');
+capitalizeName('renan beraldi');
+
+// Padding the string
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+console.log('Renan'.padStart(25, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(64637836));
+console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard('3989374794874789742'));
+
+// Repeat
+const message2 = 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
 
 ////////////////////////////////////////
+// Working with Strings - Part 2
+////////////////////////////////////////
+// const airline = 'TAP Air Portugal';
+
+// // The first two methods are gonna be for changing the case of a string.
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// // They can call be directly also on a string.
+// console.log('renan'.toUpperCase());
+
+// // Fix capitalization in name
+// const passenger = 'rEnAN'; // Renan
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// // Comparing e-mail
+// const email = 'hello@renan.io';
+// const loginEmail = '   Hello@Renan.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim(); // To remove white spaces.
+// console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+// // Since ES2019, there's also trim start and trim end, which as their names say, you can use to trim white space only from the start of the string or only from the end.
+
+// // Replacing
+// const priceGB = '288,97£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceGB);
+// console.log(priceUS);
+
+// // This method creates a new string, does not mutate the original one.
+// // This method is case sensitive
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+// // With regular expression
+// console.log(announcement.replace(/door/g, 'gate')); // g stands for global
+
+// // Booleans
+// // (includes, startsWith, endsWith)
+// const newPlane = 'Airbus A320neo';
+// console.log(newPlane.includes('A320'));
+// console.log(newPlane.includes('Boeing'));
+// console.log(newPlane.startsWith('Air'));
+
+// if (newPlane.startsWith('Airbus') && newPlane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practice Exercise
+// //  We want to check if the baggage of a certain passenger is allowed to be checked-in
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('you are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// };
+
+// checkBaggage('I have a Laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+// ////////////////////////////////////////
 // Working with Strings - Part 1
 ////////////////////////////////////////
 // Just like arrays, we can get the character of a string at a certain position
