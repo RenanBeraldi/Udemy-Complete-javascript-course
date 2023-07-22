@@ -1,5 +1,41 @@
 'use strict';
 ////////////////////////////////
+// Functions Accepting Callback Functions
+////////////////////////////////
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher-Order function
+const transformer = function (str, fn) {
+  console.log(`Original String ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`); // name Property to show the name of the function.
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log('✋');
+};
+document.body.addEventListener('click', high5);
+// The concept of callback functions is used all the time in built in JavaScript functions, there are many many more examples, for example the forEach function that we call on arrays
+['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+// The first big advantage of this is that it makes it easy to split up our code into more reusable and interconnected parts.
+// But there is a second and way more important advantage, which is the fact that callback functions allows us to create abstraction. Abstraction is something really important in programming. So basically what abstraction means is that we hide the detail of some code implementation because we don't really care about all that detail. And this allows us to think about problems at a higher more abstract level.
+// For our code example, the "transformer" function does not care at all how the string is transformed. 
+
+////////////////////////////////
 // First-Class and Higher-Order Functions
 ////////////////////////////////
 
@@ -29,7 +65,7 @@ function count() {
     };
 } */
 
-// First-Class functions is just a feature that a programming language either has or does not have. All that means is that all functions are values. All it means is that all functions are values. There are however Higher-Order functions in practice, which is possible because the language supports first class functions. 
+// First-Class functions is just a feature that a programming language either has or does not have. All that means is that all functions are values. All it means is that all functions are values. There are however Higher-Order functions in practice, which is possible because the language supports first class functions.
 
 ////////////////////////////////
 // How Passing Arguments Works: Value vs. Reference
