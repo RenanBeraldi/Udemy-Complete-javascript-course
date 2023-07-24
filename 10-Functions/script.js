@@ -1,39 +1,61 @@
 'use strict';
 ////////////////////////////////
+// Functions Returning Functions
+////////////////////////////////
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey'); // This value now is actually a function, essentially the function that is returned by "greet". This means that we can now call the greeterHey function as if it was any other function.
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')(/*<- this is a function*/ 'Jonas'); // <- returning the function that is inside of it.
+
+// What's the point to have functions returning other functions?
+// This will become extremely useful in some situations. And especially if we're using a really important programming paradigm called functional programming.
+
+const greeter = greeting => name => console.log(`${greeting} ${name}`);
+
+greeter('Hi')('Renan');
+
+////////////////////////////////
 // Functions Accepting Callback Functions
 ////////////////////////////////
 
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
-};
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
 
-// Higher-Order function
-const transformer = function (str, fn) {
-  console.log(`Original String ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+// // Higher-Order function
+// const transformer = function (str, fn) {
+//   console.log(`Original String ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
 
-  console.log(`Transformed by: ${fn.name}`); // name Property to show the name of the function.
-};
+//   console.log(`Transformed by: ${fn.name}`); // name Property to show the name of the function.
+// };
 
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
 
-// JS uses callbacks all the time
-const high5 = function () {
-  console.log('✋');
-};
-document.body.addEventListener('click', high5);
-// The concept of callback functions is used all the time in built in JavaScript functions, there are many many more examples, for example the forEach function that we call on arrays
-['Jonas', 'Martha', 'Adam'].forEach(high5);
+// // JS uses callbacks all the time
+// const high5 = function () {
+//   console.log('✋');
+// };
+// document.body.addEventListener('click', high5);
+// // The concept of callback functions is used all the time in built in JavaScript functions, there are many many more examples, for example the forEach function that we call on arrays
+// ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
 // The first big advantage of this is that it makes it easy to split up our code into more reusable and interconnected parts.
 // But there is a second and way more important advantage, which is the fact that callback functions allows us to create abstraction. Abstraction is something really important in programming. So basically what abstraction means is that we hide the detail of some code implementation because we don't really care about all that detail. And this allows us to think about problems at a higher more abstract level.
-// For our code example, the "transformer" function does not care at all how the string is transformed. 
+// For our code example, the "transformer" function does not care at all how the string is transformed.
 
 ////////////////////////////////
 // First-Class and Higher-Order Functions
