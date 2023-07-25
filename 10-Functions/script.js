@@ -1,25 +1,76 @@
 'use strict';
 ////////////////////////////////
-// Functions Returning Functions
+// The Call and Apply Methods.
 ////////////////////////////////
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a set on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
 };
 
-const greeterHey = greet('Hey'); // This value now is actually a function, essentially the function that is returned by "greet". This means that we can now call the greeterHey function as if it was any other function.
-greeterHey('Jonas');
-greeterHey('Steven');
+lufthansa.book(239, 'Renan Beraldi');
+lufthansa.book(635, 'John Smith');
 
-greet('Hello')(/*<- this is a function*/ 'Jonas'); // <- returning the function that is inside of it.
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
 
-// What's the point to have functions returning other functions?
-// This will become extremely useful in some situations. And especially if we're using a really important programming paradigm called functional programming.
+const book = lufthansa.book;
 
-const greeter = greeting => name => console.log(`${greeting} ${name}`);
+// does not work
+// book(23, 'Sarah Williams');
 
-greeter('Hi')('Renan');
+book.call(eurowings, 23, 'Sarah Williams');
+
+book.call(lufthansa, 239, 'Mary Cooper');
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// Apply method
+// The apply method does basically the same thing. The only difference is that apply does not receive a list of arguments after the this keyword. But instead, it's gonna take an array of the arguments.
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// This apply method is no longer used in JS, we actually have a Better way of doing the exact same thing.
+book.call(swiss, ...flightData); // Using the spread operator.
+
+////////////////////////////////
+// Functions Returning Functions
+////////////////////////////////
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey'); // This value now is actually a function, essentially the function that is returned by "greet". This means that we can now call the greeterHey function as if it was any other function.
+// greeterHey('Jonas');
+// greeterHey('Steven');
+
+// greet('Hello')(/*<- this is a function*/ 'Jonas'); // <- returning the function that is inside of it.
+
+// // What's the point to have functions returning other functions?
+// // This will become extremely useful in some situations. And especially if we're using a really important programming paradigm called functional programming.
+
+// const greeter = greeting => name => console.log(`${greeting} ${name}`);
+
+// greeter('Hi')('Renan');
 
 ////////////////////////////////
 // Functions Accepting Callback Functions
