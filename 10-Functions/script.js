@@ -1,32 +1,70 @@
 'use strict';
 ////////////////////////////////
+// Closures
+////////////////////////////////
+// The first thing that is important about Closures, is that a closure is not a feature that we explicitly use. So we don't create Closures manually, like we create a new array or a new function. A Closure simply happens automatically in certain situations, we just need to recognize those situations.
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+// Before we start running the secure booking function, our code is running in the global execution context. And in there, we currently only have this secure booking function. And we can also say that the global scope now contains secureBooking.
+
+// When secureBooking is actually executed, a new execution context is put on top of the execution stack (Each execution context has a variable environment, which contains all its local variables). In this case it only contains passengerCount set to 0. This variable environment is also the scope of this function. So passengerCount is in the local scope, but of course this scope also gets access to all variables of the parent's scopes.
+
+// In the next line of the secureBooking function a new function is returned and it will be stored in the booker variable. So, the global context also contains the booker variable. And now what else happens when the secure booking function returns? Its execution context pops off the stack and disappears. So the secureBooking functions has done its job and finished execution.
+
+booker();
+booker();
+booker();
+
+// How can the booker function (function inside the secureBooking) update this passengerCount variable that's defined in the secureBooking function that actually has already finished executing. What makes this possible is a Closure.
+
+// We can say that a Closure makes a function remember all the variables that existed at the function's birthplace essentially. We can imagine the secureBooking as being the birthplace of the booker function.
+
+// ANY FUNCTION ALWAYS HAS ACCESS TO THE VARIABLE ENVIRONMENT OF THE EXECUTION CONTEXT IN WHICH THE FUNCTION WAS CREATED. Even after that execution context is gone.
+
+// the Closure is then basically this variable environment attached to the function, exactly as it was at the time and place that the function was created.
+// We can say that the booker function closed over its parent scope or over its parent variable environment. And this includes all function arguments.
+
+// If there was a global passengerCount variable set to 10, it would still first use the one in the closure. So, the closure basically has priority over the scope chain.
+
+console.dir(booker);
+
+////////////////////////////////
 // Immediately Invoked Function Expressions (IIFE)
 ////////////////////////////////
 // Sometimes in JS, we need a function that is only executed once. Basically a function that disappears right after it's called once.
-const runOnce = function () {
-  console.log('This will never run again');
-};
-runOnce();
+// const runOnce = function () {
+//   console.log('This will never run again');
+// };
+// runOnce();
 
-(function () {
-  console.log('This will never run again');
-})(); // This pattern is called IIFE
-// Wrapping into parenthesis, we basically transformed the statement that we had before into an expression.
+// (function () {
+//   console.log('This will never run again');
+// })(); // This pattern is called IIFE
+// // Wrapping into parenthesis, we basically transformed the statement that we had before into an expression.
 
-// The same work for arrow function.
-(() => console.log('This will ALSO never run again'))();
+// // The same work for arrow function.
+// (() => console.log('This will ALSO never run again'))();
 
-// Why was this pattern actually invented?
-// We already know that functions create scopes. What's important here, is that one scope does not have access to variables from an inner scope. We also say that data defined inside a scope is private, we also say that this data is encapsulated.
-// Data encapsulation and data privacy are extremely important concepts in programming. So many times we actually need to protect our variables, from being accidentally overwritten by some other parts of the program, or even external scripts or libraries.
+// // Why was this pattern actually invented?
+// // We already know that functions create scopes. What's important here, is that one scope does not have access to variables from an inner scope. We also say that data defined inside a scope is private, we also say that this data is encapsulated.
+// // Data encapsulation and data privacy are extremely important concepts in programming. So many times we actually need to protect our variables, from being accidentally overwritten by some other parts of the program, or even external scripts or libraries.
 
-{
-  const isPrivate = 23;
-  var notPrivate = 46;
-}
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 46;
+// }
 
-// console.log(isPrivate);
-console.log(notPrivate);
+// // console.log(isPrivate);
+// console.log(notPrivate);
 
 ////////////////////////////////
 // The bind Method
