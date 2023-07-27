@@ -75,38 +75,59 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// The new at method
+/////////////////////////////////////////////////
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// We can replace the bracket notation with the more modern looking at method, if we prefer to use arrays methods.
+// Maybe this doesn't look all to useful. Well, there is one particularity of the at method, which it makes quite useful to use instead of the brackets notation.
+
+// Let's say that we want that we want to get the last element of the array. Now, supposing that we don't know the length of the array, we would write something like this:
+console.log(arr.at(-1)); // console.log(arr[arr.length - 1]);
+
+// Another way is to use the slice method.
+console.log(arr.slice(-1)[0]); // get a copy of the original array.
+
+console.log(arr.at(-2));
+
+// The at method also works on strings.
+console.log('renan'.at(0));
+console.log('renan'.at(-1));
 
 /////////////////////////////////////////////////
 // Simple Array Methods
 /////////////////////////////////////////////////
 
-let arr = ['a,', 'b', 'c', 'd', 'e'];
+// let arr = ['a,', 'b', 'c', 'd', 'e'];
 
-// SLICE
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4));
-console.log(arr.slice(-2));
-console.log(arr.slice(-1));
-console.log(arr.slice(1, -2));
-console.log(arr.slice());
+// // SLICE
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(-1));
+// console.log(arr.slice(1, -2));
+// console.log(arr.slice());
 
-// SPLICE
-// console.log(arr.splice(2));
-arr.splice(-1);
-console.log(arr);
-arr.splice(1, 2);
-console.log(arr);
+// // SPLICE
+// // console.log(arr.splice(2));
+// arr.splice(-1);
+// console.log(arr);
+// arr.splice(1, 2);
+// console.log(arr);
 
-// REVERSE
-arr = ['a,', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f'];
-console.log(arr2.reverse());
-console.log(arr2);
+// // REVERSE
+// arr = ['a,', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse());
+// console.log(arr2);
 
-// CONCAT
-const letters = arr.concat(arr2);
-console.log(letters);
-console.log([...arr, ...arr2]);
+// // CONCAT
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]);
 
-// JOIN
-console.log(letters.join(' - '));
+// // JOIN
+// console.log(letters.join(' - '));
