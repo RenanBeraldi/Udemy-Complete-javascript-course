@@ -65,70 +65,101 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// forEach with Maps and Sets
+/////////////////////////////////////////////////
+// Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+// In this array of arrays, each of these array elements, the inner array, will be one entry of the Map. Where the first element is the key, and the second is the value.
+
+// This callback function also has three parameters. When the forEach method calls it, it will cal this function with three arguments. 1st one will be the current value, 2nd one is the key, and the 3rd one the map
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+// The callback function has the parameters of value, key and map,
+currenciesUnique.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// Returning we have the same thing in the value and in the key. And so what this means is that the key here is exactly the same as the value, so why is that? Well, a set doesn't have keys, and it doesn't have indexes either. And so there is no value that would make sense for the key.
+currenciesUnique.forEach(function (value, _, map) {
+  console.log(`${_}: ${value}`);
+});
+
+/////////////////////////////////////////////////
 // Looping Arrays: forEach
 /////////////////////////////////////////////////
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// Let's say that we wanted to loop over this array in order to print a message for each movement in this bank account. The positive values are basically deposits and the negative values are withdrawals. We can print something to the console saying the user deposited or withdrew some money.
-for (const movement of movements) {
-  const moneyMovemented =
-    movement > 0
-      ? `You deposited ${movement}`
-      : `You withdrew ${Math.abs(movement)}`;
-  console.log(moneyMovemented);
-}
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // Let's say that we wanted to loop over this array in order to print a message for each movement in this bank account. The positive values are basically deposits and the negative values are withdrawals. We can print something to the console saying the user deposited or withdrew some money.
+// for (const movement of movements) {
+//   const moneyMovemented =
+//     movement > 0
+//       ? `You deposited ${movement}`
+//       : `You withdrew ${Math.abs(movement)}`;
+//   console.log(moneyMovemented);
+// }
 
-// So forEach is technically a higher order function, which requires a callback function. It's the forEach method who will call this callback function. But when exactly will forEach actually call this callback function?
-// Well, what the forEach method does it to loop over the array, and in each iteration it will execute this callback function. ALso as the forEach method calls this callback function in each iteration it will pass in the current element as an argument.
-console.log('---- forEach ----');
-movements.forEach(function (movement) {
-  const moneyMovemented =
-    movement > 0
-      ? `You deposited ${movement}`
-      : `You withdrew ${Math.abs(movement)}`;
-  console.log(moneyMovemented);
-});
+// // So forEach is technically a higher order function, which requires a callback function. It's the forEach method who will call this callback function. But when exactly will forEach actually call this callback function?
+// // Well, what the forEach method does it to loop over the array, and in each iteration it will execute this callback function. ALso as the forEach method calls this callback function in each iteration it will pass in the current element as an argument.
+// console.log('---- forEach ----');
+// movements.forEach(function (movement) {
+//   const moneyMovemented =
+//     movement > 0
+//       ? `You deposited ${movement}`
+//       : `You withdrew ${Math.abs(movement)}`;
+//   console.log(moneyMovemented);
+// });
 
-// Basically, behind the scenes, in iteration zero, it will call this function an anonymous function in this case without a name.
-// 0: function (200)
-// 1: function (450)
-// 2: function (400)
-// ... Till the end of the array.
+// // Basically, behind the scenes, in iteration zero, it will call this function an anonymous function in this case without a name.
+// // 0: function (200)
+// // 1: function (450)
+// // 2: function (400)
+// // ... Till the end of the array.
 
-// What if we actually needed access to a counter variable, just like we can access the current index of the array here in the for of loop.
-for (const [i, movement] of movements.entries()) {
-  const moneyMovemented =
-    movement > 0
-      ? `Movement ${i + 1}: You deposited ${movement}`
-      : `Movement ${i + 1}: You withdrew ${Math.abs(movement)}`;
-  console.log(moneyMovemented);
-}
+// // What if we actually needed access to a counter variable, just like we can access the current index of the array here in the for of loop.
+// for (const [i, movement] of movements.entries()) {
+//   const moneyMovemented =
+//     movement > 0
+//       ? `Movement ${i + 1}: You deposited ${movement}`
+//       : `Movement ${i + 1}: You withdrew ${Math.abs(movement)}`;
+//   console.log(moneyMovemented);
+// }
 
-// Let's make with the forEach method right now. And here, fortunately, it's a lot easier, to get access to the current index. So, to understand how it works we need to remember once more that is the forEach method who calls this callback function in each iteration. And as it calls this function it also passes in the current element of the array, but actually that's not all it passes in, in fact forEach passes in the current element, the index and the entire array that we are looping.
-console.log('---- forEach ----');
-movements.forEach(function (mov, i, arr) {
-  const moneyMovemented =
-    mov > 0
-      ? `Movement ${i + 1}: You deposited ${mov}`
-      : `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
-  console.log(moneyMovemented);
-});
+// // Let's make with the forEach method right now. And here, fortunately, it's a lot easier, to get access to the current index. So, to understand how it works we need to remember once more that is the forEach method who calls this callback function in each iteration. And as it calls this function it also passes in the current element of the array, but actually that's not all it passes in, in fact forEach passes in the current element, the index and the entire array that we are looping.
+// console.log('---- forEach ----');
+// movements.forEach(function (mov, i, arr) {
+//   const moneyMovemented =
+//     mov > 0
+//       ? `Movement ${i + 1}: You deposited ${mov}`
+//       : `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+//   console.log(moneyMovemented);
+// });
 
-// The name of the parameters does not matter, what matters there is the order. The first parameter always needs to be the current element, the second parameter always the current index and the third one always the array that we are looping. 
+// The name of the parameters does not matter, what matters there is the order. The first parameter always needs to be the current element, the second parameter always the current index and the third one always the array that we are looping.
 
-// When should we use forEach and when should we use the for of loop? 
-//One fundamental difference between two of them is that you cannot break out of a forEach loop. So, the continue and break statements do not work in a forEach loop at all. So instead, forEach will always loop over the entire array. So if you really need to break out a loop then you have to keep using the for of loop. 
+// When should we use forEach and when should we use the for of loop?
+//One fundamental difference between two of them is that you cannot break out of a forEach loop. So, the continue and break statements do not work in a forEach loop at all. So instead, forEach will always loop over the entire array. So if you really need to break out a loop then you have to keep using the for of loop.
 
 /////////////////////////////////////////////////
 // The new at method
