@@ -62,6 +62,27 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
+// Creating DOM Elements
+
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>
+   `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -79,32 +100,32 @@ const inputClosePin = document.querySelector('.form__input--pin');
 // forEach with Maps and Sets
 /////////////////////////////////////////////////
 // Map
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-// In this array of arrays, each of these array elements, the inner array, will be one entry of the Map. Where the first element is the key, and the second is the value.
+// // In this array of arrays, each of these array elements, the inner array, will be one entry of the Map. Where the first element is the key, and the second is the value.
 
-// This callback function also has three parameters. When the forEach method calls it, it will cal this function with three arguments. 1st one will be the current value, 2nd one is the key, and the 3rd one the map
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// // This callback function also has three parameters. When the forEach method calls it, it will cal this function with three arguments. 1st one will be the current value, 2nd one is the key, and the 3rd one the map
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
 
-// Set
-const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
-console.log(currenciesUnique);
+// // Set
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique);
 
-// The callback function has the parameters of value, key and map,
-currenciesUnique.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// // The callback function has the parameters of value, key and map,
+// currenciesUnique.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
 
-// Returning we have the same thing in the value and in the key. And so what this means is that the key here is exactly the same as the value, so why is that? Well, a set doesn't have keys, and it doesn't have indexes either. And so there is no value that would make sense for the key.
-currenciesUnique.forEach(function (value, _, map) {
-  console.log(`${_}: ${value}`);
-});
+// // Returning we have the same thing in the value and in the key. And so what this means is that the key here is exactly the same as the value, so why is that? Well, a set doesn't have keys, and it doesn't have indexes either. And so there is no value that would make sense for the key.
+// currenciesUnique.forEach(function (value, _, map) {
+//   console.log(`${_}: ${value}`);
+// });
 
 /////////////////////////////////////////////////
 // Looping Arrays: forEach
