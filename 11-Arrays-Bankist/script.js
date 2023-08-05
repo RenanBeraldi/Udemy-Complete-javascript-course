@@ -64,6 +64,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Creating DOM Elements
 
+// Displaying the Movements of the bank account
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -83,6 +84,17 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+// Calculating the account Balance and displaying it
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, movement) {
+    return acc + movement;
+  }, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+
+calcDisplayBalance(account1.movements);
+
+// Creating usernames
 const createUsernames = function (accounts) {
   accounts.forEach(function (account) {
     account.username = account.owner
@@ -110,25 +122,51 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// The reduce Method
+/////////////////////////////////////////////////
+
+// accumulator is like a snowball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const movement of movements) balance2 += movement;
+console.log(balance2);
+
+// Maximum value
+const max = movements.reduce((acc, movement) => {
+  if (acc > movement) {
+    return acc;
+  } else {
+    return movement;
+  }
+}, movements[0]);
+console.log(max);
+
+/////////////////////////////////////////////////
 // The filter Method
 /////////////////////////////////////////////////
-const deposits = movements.filter(function (movement) {
-  return movement > 0;
-});
-console.log(deposits);
+// const deposits = movements.filter(function (movement) {
+//   return movement > 0;
+// });
+// console.log(deposits);
 
-const withdrawals = movements.filter(function (movement) {
-  return movement < 0;
-});
-console.log(withdrawals);
+// const withdrawals = movements.filter(function (movement) {
+//   return movement < 0;
+// });
+// console.log(withdrawals);
 
-const depositsForOf = [];
-for (const movement of movements) {
-  if (movement > 0) {
-    depositsForOf.push(movement);
-  }
-}
-console.log(depositsForOf);
+// const depositsForOf = [];
+// for (const movement of movements) {
+//   if (movement > 0) {
+//     depositsForOf.push(movement);
+//   }
+// }
+// console.log(depositsForOf);
 
 /////////////////////////////////////////////////
 // The map Method
