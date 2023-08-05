@@ -97,6 +97,41 @@ displayMovements(account1.movements);
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// The map Method
+/////////////////////////////////////////////////
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Let's suppose that we want to convert this array to US$, but it's in €, and let's think that 1 US$ is 1.1 €
+const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+// We can use arrow functions to simplify the callback function inside the method.
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+// Using methods with callback functions is the new and modern way of doing this kind of stuff.
+
+// As the forEach method, the map method also has access to the exact same 3 parameters, besides the current array element, which is the "mov", we also get access to the current index as well the whole array.
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
+
+/////////////////////////////////////////////////
 // forEach with Maps and Sets
 /////////////////////////////////////////////////
 // Map
