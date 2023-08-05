@@ -105,9 +105,30 @@ createUsernames(accounts);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// The filter Method
+/////////////////////////////////////////////////
+const deposits = movements.filter(function (movement) {
+  return movement > 0;
+});
+console.log(deposits);
+
+const withdrawals = movements.filter(function (movement) {
+  return movement < 0;
+});
+console.log(withdrawals);
+
+const depositsForOf = [];
+for (const movement of movements) {
+  if (movement > 0) {
+    depositsForOf.push(movement);
+  }
+}
+console.log(depositsForOf);
 
 /////////////////////////////////////////////////
 // The map Method
