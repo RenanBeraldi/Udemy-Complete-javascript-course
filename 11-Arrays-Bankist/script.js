@@ -142,18 +142,36 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// The find Method
+/////////////////////////////////////////////////
+const firstWithdrawal = movements.find(movement => movement < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(account => account.owner === 'Jessica Davis');
+console.log(account);
+
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis'){
+    console.log(account);
+  }
+}
+
+/////////////////////////////////////////////////
 // The Magic of Chaining Methods
 /////////////////////////////////////////////////
-const eurToUsd = 1.1;
-const totalDepositsUSD = movements
-  .filter(movement => movement > 0) // Result of this will a new array.
-  .map((movement, i, arr) => {
-    return movement * eurToUsd;
-  })
-  // .map(movement => movement * eurToUsd)
-  .reduce((acc, movement) => acc + movement, 0);
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = movements
+//   .filter(movement => movement > 0) // Result of this will a new array.
+//   .map((movement, i, arr) => {
+//     return movement * eurToUsd;
+//   })
+//   // .map(movement => movement * eurToUsd)
+//   .reduce((acc, movement) => acc + movement, 0);
 
-console.log(totalDepositsUSD);
+// console.log(totalDepositsUSD);
 
 /////////////////////////////////////////////////
 // The reduce Method
