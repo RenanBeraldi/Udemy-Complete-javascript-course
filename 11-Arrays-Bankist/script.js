@@ -91,8 +91,28 @@ const calcDisplayBalance = function (movements) {
   }, 0);
   labelBalance.textContent = `${balance}€`;
 };
-
 calcDisplayBalance(account1.movements);
+
+// Calculating the summary value
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => (acc += mov), 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => (acc += mov), 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, interest) => (acc += interest), 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
 
 // Creating usernames
 const createUsernames = function (accounts) {
@@ -122,6 +142,20 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// The Magic of Chaining Methods
+/////////////////////////////////////////////////
+const eurToUsd = 1.1;
+const totalDepositsUSD = movements
+  .filter(movement => movement > 0) // Result of this will a new array.
+  .map((movement, i, arr) => {
+    return movement * eurToUsd;
+  })
+  // .map(movement => movement * eurToUsd)
+  .reduce((acc, movement) => acc + movement, 0);
+
+console.log(totalDepositsUSD);
+
+/////////////////////////////////////////////////
 // The reduce Method
 /////////////////////////////////////////////////
 
@@ -130,22 +164,22 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   console.log(`Iteration ${i}: ${acc}`);
 //   return acc + cur;
 // }, 0);
-const balance = movements.reduce((acc, cur) => acc + cur, 0);
-console.log(balance);
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
 
-let balance2 = 0;
-for (const movement of movements) balance2 += movement;
-console.log(balance2);
+// let balance2 = 0;
+// for (const movement of movements) balance2 += movement;
+// console.log(balance2);
 
-// Maximum value
-const max = movements.reduce((acc, movement) => {
-  if (acc > movement) {
-    return acc;
-  } else {
-    return movement;
-  }
-}, movements[0]);
-console.log(max);
+// // Maximum value
+// const max = movements.reduce((acc, movement) => {
+//   if (acc > movement) {
+//     return acc;
+//   } else {
+//     return movement;
+//   }
+// }, movements[0]);
+// console.log(max);
 
 /////////////////////////////////////////////////
 // The filter Method
