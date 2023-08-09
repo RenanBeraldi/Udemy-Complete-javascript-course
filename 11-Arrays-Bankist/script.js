@@ -238,39 +238,73 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// flat and flatMap Methods
+/////////////////////////////////////////////////
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+const accountMovements = accounts.map(function (account) {
+  return account.movements;
+});
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overallBalance = allMovements.reduce(
+  (acc, movement) => acc + movement,
+  0
+);
+console.log(overallBalance);
+
+// flat
+const overallBalance2 = accounts
+  .map(account => account.movements)
+  .flat()
+  .reduce((acc, movement) => (acc += movement), 0);
+console.log(overallBalance2);
+
+// flatMap
+const overallBalance3 = accounts
+  .flatMap(account => account.movements)
+  .reduce((account, movement) => (account += movement), 0);
+console.log(overallBalance3);
+
+/////////////////////////////////////////////////
 // some and every Methods
 /////////////////////////////////////////////////
-
 // Equality
-console.log(movements.includes(-130));
+// console.log(movements.includes(-130));
 
-// some(): Condition
-console.log(movements.some(mov => mov === -130));
+// // some(): Condition
+// console.log(movements.some(mov => mov === -130));
 
-const anyDeposits = movements.some(mov => mov > 1500);
-console.log(anyDeposits);
+// const anyDeposits = movements.some(mov => mov > 1500);
+// console.log(anyDeposits);
 
-// every(): Condition
-console.log(
-  movements.every(function (movement) {
-    return movement > 0;
-  })
-);
+// // every(): Condition
+// console.log(
+//   movements.every(function (movement) {
+//     return movement > 0;
+//   })
+// );
 
-console.log(
-  account4.movements.every(function (movement) {
-    return movement > 0;
-  })
-);
+// console.log(
+//   account4.movements.every(function (movement) {
+//     return movement > 0;
+//   })
+// );
 
-// Separate callback function
-const deposit = function (movement) {
-  return movement > 0;
-};
+// // Separate callback function
+// const deposit = function (movement) {
+//   return movement > 0;
+// };
 
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 
 /////////////////////////////////////////////////
 // The find Method
