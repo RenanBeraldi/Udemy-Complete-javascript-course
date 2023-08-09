@@ -60,9 +60,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-// Creating DOM Elements
-
 // Displaying the Movements of the bank account
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
@@ -169,7 +166,7 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAccount = accounts.find(function (account) {
     return account.username === inputTransferTo.value;
   });
-  
+
   inputTransferAmount.value = inputTransferTo.value = '';
 
   if (
@@ -184,6 +181,27 @@ btnTransfer.addEventListener('click', function (e) {
 
     updateUI(currentAccount);
   }
+});
+
+// Close an account
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(function (account) {
+      account.username === currentAccount.username;
+    });
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Change UI
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = 'Log in to get started';
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
