@@ -238,39 +238,72 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// sorting Arrays
+/////////////////////////////////////////////////
+// Strings
+const owners = ['Jonas', 'Zack', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(owners);
+
+// Numbers
+console.log(movements);
+// return < 0, A, B (keep order)
+// return > 0, B, A (switch order)
+
+// Ascending
+// movements.sort(function (a, b) {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort(function (a, b) {
+  return a - b;
+});
+console.log(movements);
+
+// Descending
+// movements.sort(function (a, b) {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+movements.sort(function (a, b) {
+  return b - a;
+});
+console.log(movements);
+
+/////////////////////////////////////////////////
 // flat and flatMap Methods
 /////////////////////////////////////////////////
-const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arrDeep.flat(2));
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
 
-const accountMovements = accounts.map(function (account) {
-  return account.movements;
-});
-console.log(accountMovements);
-const allMovements = accountMovements.flat();
-console.log(allMovements);
+// const accountMovements = accounts.map(function (account) {
+//   return account.movements;
+// });
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
 
-const overallBalance = allMovements.reduce(
-  (acc, movement) => acc + movement,
-  0
-);
-console.log(overallBalance);
+// const overallBalance = allMovements.reduce(
+//   (acc, movement) => acc + movement,
+//   0
+// );
+// console.log(overallBalance);
 
-// flat
-const overallBalance2 = accounts
-  .map(account => account.movements)
-  .flat()
-  .reduce((acc, movement) => (acc += movement), 0);
-console.log(overallBalance2);
+// // flat
+// const overallBalance2 = accounts
+//   .map(account => account.movements)
+//   .flat()
+//   .reduce((acc, movement) => (acc += movement), 0);
+// console.log(overallBalance2);
 
-// flatMap
-const overallBalance3 = accounts
-  .flatMap(account => account.movements)
-  .reduce((account, movement) => (account += movement), 0);
-console.log(overallBalance3);
+// // flatMap
+// const overallBalance3 = accounts
+//   .flatMap(account => account.movements)
+//   .reduce((account, movement) => (account += movement), 0);
+// console.log(overallBalance3);
 
 /////////////////////////////////////////////////
 // some and every Methods
