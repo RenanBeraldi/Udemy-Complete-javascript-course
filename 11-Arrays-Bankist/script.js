@@ -183,6 +183,26 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+// Request Loan
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (
+    amount > 0 &&
+    currentAccount.movements.some(function (movement) {
+      return movement >= amount * 0.1;
+    })
+  ) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 // Close an account
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -192,7 +212,7 @@ btnClose.addEventListener('click', function (e) {
     Number(inputClosePin.value) === currentAccount.pin
   ) {
     const index = accounts.findIndex(function (account) {
-      account.username === currentAccount.username;
+      return account.username === currentAccount.username;
     });
     // Delete account
     accounts.splice(index, 1);
@@ -216,6 +236,41 @@ btnClose.addEventListener('click', function (e) {
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// some and every Methods
+/////////////////////////////////////////////////
+
+// Equality
+console.log(movements.includes(-130));
+
+// some(): Condition
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
+
+// every(): Condition
+console.log(
+  movements.every(function (movement) {
+    return movement > 0;
+  })
+);
+
+console.log(
+  account4.movements.every(function (movement) {
+    return movement > 0;
+  })
+);
+
+// Separate callback function
+const deposit = function (movement) {
+  return movement > 0;
+};
+
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
 
 /////////////////////////////////////////////////
 // The find Method
