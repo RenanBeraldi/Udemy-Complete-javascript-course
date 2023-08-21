@@ -81,6 +81,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+// Displaying the Movements of the bank account
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -90,125 +91,132 @@ const displayMovements = function (movements, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
-      <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
-      </div>
-    `;
-
+      <div class="movements__value">${Math.abs(mov)}€</div>
+    </div>
+   `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
-const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+// Calculating the account Balance and displaying it
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce(function (acc, movement) {
+    return acc + movement;
+  }, 0);
+  labelBalance.textContent = `${account.balance}€`;
 };
 
-const calcDisplaySummary = function (acc) {
-  const incomes = acc.movements
+// Calculating the summary value
+const calcDisplaySummary = function (account) {
+  const incomes = account.movements
     .filter(mov => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0);
+    .reduce((acc, mov) => (acc += mov), 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = acc.movements
+  const outcomes = account.movements
     .filter(mov => mov < 0)
-    .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+    .reduce((acc, mov) => (acc += mov), 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
-  const interest = acc.movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter((int, i, arr) => {
-      // console.log(arr);
-      return int >= 1;
-    })
-    .reduce((acc, int) => acc + int, 0);
+    .map(deposit => (deposit * account.interestRate) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, interest) => (acc += interest), 0);
   labelSumInterest.textContent = `${interest}€`;
 };
 
-const createUsernames = function (accs) {
-  accs.forEach(function (acc) {
-    acc.username = acc.owner
+// Creating usernames
+const createUsernames = function (accounts) {
+  accounts.forEach(function (account) {
+    account.username = account.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map(function (name) {
+        return name[0];
+      })
       .join('');
   });
 };
 createUsernames(accounts);
 
-const updateUI = function (acc) {
-  // Display movements
-  displayMovements(acc.movements);
-
-  // Display balance
-  calcDisplayBalance(acc);
-
-  // Display summary
-  calcDisplaySummary(acc);
+// Updating UI
+const updateUI = function (account) {
+  // Display Movements
+  displayMovements(account.movements);
+  // Display Balance
+  calcDisplayBalance(account);
+  // Display Summary
+  calcDisplaySummary(account);
 };
 
-///////////////////////////////////////
-// Event handlers
+/////////////////////////////////////////////////
+// Event Handlers
 let currentAccount;
 
+// Login
 btnLogin.addEventListener('click', function (e) {
-  // Prevent form from submitting
-  e.preventDefault();
+  e.preventDefault(); // Prevent form from submitting
 
-  currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
-  );
-  console.log(currentAccount);
+  currentAccount = accounts.find(function (account) {
+    return account.username === inputLoginUsername.value;
+  });
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
 
-    // Clear input fields
+    // Clear the input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Update UI
     updateUI(currentAccount);
   }
 });
 
+// Transfer money
 btnTransfer.addEventListener('click', function (e) {
-  e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
-  const receiverAcc = accounts.find(
-    acc => acc.username === inputTransferTo.value
-  );
+  e.preventDefault(); // Prevent form from submitting
+
+  const amount = +inputTransferAmount.value;
+  const receiverAccount = accounts.find(function (account) {
+    return account.username === inputTransferTo.value;
+  });
+
   inputTransferAmount.value = inputTransferTo.value = '';
 
   if (
     amount > 0 &&
-    receiverAcc &&
+    receiverAccount &&
     currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    receiverAccount?.username !== currentAccount.username
   ) {
     // Doing the transfer
     currentAccount.movements.push(-amount);
-    receiverAcc.movements.push(amount);
+    receiverAccount.movements.push(amount);
 
-    // Update UI
     updateUI(currentAccount);
   }
 });
 
+// Request Loan
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
   const amount = Number(inputLoanAmount.value);
-
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+  if (
+    amount > 0 &&
+    currentAccount.movements.some(function (movement) {
+      return movement >= amount * 0.1;
+    })
+  ) {
     // Add movement
     currentAccount.movements.push(amount);
 
@@ -218,30 +226,29 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
+// Close an account
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
-    const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
-    );
-    console.log(index);
-    // .indexOf(23)
-
+    const index = accounts.findIndex(function (account) {
+      return account.username === currentAccount.username;
+    });
     // Delete account
     accounts.splice(index, 1);
 
-    // Hide UI
+    // Change UI
     containerApp.style.opacity = 0;
+    labelWelcome.textContent = 'Log in to get started';
   }
-
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-let sorted = false;
+// Sorting the movements
+let sortedState = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
   displayMovements(currentAccount.movements, !sorted);
@@ -249,5 +256,41 @@ btnSort.addEventListener('click', function (e) {
 });
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
 // LECTURES
+
+/////////////////////////////////////////////////
+// Converting and Checking Numbers
+console.log(23 === 23.0);
+
+// Base 10 - 0 to 9
+// Base 2 - 0 1
+console.log(0.1 + 0.2 === false);
+
+// Conversion
+console.log(Number('23'));
+console.log(+'23');
+
+// Parsing
+console.log(Number.parseInt('30px', 10)); // the string needs to start with a number
+console.log(Number.parseInt('e23', 10));
+
+console.log(Number.parseInt('  2.5rem'));
+console.log(Number.parseFloat('  2.5rem'));
+
+// console.log(parseFloat('  2.5rem'));
+
+// Checking if value is NaN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20X'));
+console.log(Number.isNaN(23 / 0));
+
+// Checking if a value is number
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20x'));
+console.log(Number.isFinite(23 / 0));
+
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23.0));
+console.log(Number.isInteger(23 / 0));
