@@ -94,6 +94,13 @@ const formatMovementDate = function (date, locale) {
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
+const formatCurrency = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
+
 // Displaying the Movements of the bank account
 const displayMovements = function (account, sort = false) {
   containerMovements.innerHTML = '';
@@ -108,13 +115,19 @@ const displayMovements = function (account, sort = false) {
     const date = new Date(account.movementsDates[i]);
     const displayDate = formatMovementDate(date, account.locale);
 
+    const formattedMovement = formatCurrency(
+      Math.abs(mov),
+      account.locale,
+      account.currency
+    );
+
     const html = `
     <div class="movements__row">
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
       <div class="movements__date">${displayDate}</div>
-      <div class="movements__value">${Math.abs(mov).toFixed(2)}€</div>
+      <div class="movements__value">${formattedMovement}</div>
     </div>
    `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -126,7 +139,12 @@ const calcDisplayBalance = function (account) {
   account.balance = account.movements.reduce(function (acc, movement) {
     return acc + movement;
   }, 0);
-  labelBalance.textContent = `${account.balance.toFixed(2)}€`;
+
+  labelBalance.textContent = formatCurrency(
+    account.balance,
+    account.locale,
+    account.currency
+  );
 };
 
 // Calculating the summary value
@@ -134,19 +152,31 @@ const calcDisplaySummary = function (account) {
   const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => (acc += mov), 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCurrency(
+    incomes,
+    account.locale,
+    account.currency
+  );
 
   const outcomes = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => (acc += mov), 0);
-  labelSumOut.textContent = `${Math.abs(outcomes).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurrency(
+    Math.abs(outcomes),
+    account.locale,
+    account.currency
+  );
 
   const interest = account.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * account.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, interest) => (acc += interest), 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurrency(
+    interest,
+    account.locale,
+    account.currency
+  );
 };
 
 // Creating usernames
@@ -304,6 +334,25 @@ btnSort.addEventListener('click', function (e) {
 
 /////////////////////////////////////////////////
 // LECTURES
+
+/////////////////////////////////////////////////
+// Internationalizing Numbers (Intl)
+const num = 3884764.23;
+
+const options = {
+  style: 'currency',
+  unit: 'celsius',
+  currency: 'EUR',
+  // useGrouping: false,
+};
+
+console.log('US: ' + new Intl.NumberFormat('en-US', options).format(num));
+console.log('Germany: ' + new Intl.NumberFormat('de-DE', options).format(num));
+console.log('Syria: ' + new Intl.NumberFormat('ar-SY', options).format(num));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, options).format(num)
+);
 
 /////////////////////////////////////////////////
 // Operations with Dates
