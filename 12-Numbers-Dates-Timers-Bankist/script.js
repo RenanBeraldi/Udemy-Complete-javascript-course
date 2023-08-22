@@ -259,32 +259,72 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 /////////////////////////////////////////////////
+// Creating Dates
+
+// Create a Date
+/*
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Tue Aug 22 2023 15:05:21'));
+console.log(new Date('December 24, 2015'));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+*/
+
+// Working with Dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth() + 1);
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+
+console.log(future.getTime());
+
+console.log(new Date(2_142_267_780_000));
+
+console.log(future.toISOString());
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
+
+/////////////////////////////////////////////////
 // Working with BigInt
-console.log(9487547394578347985798347895479784597n);
+// console.log(9487547394578347985798347895479784597n);
 
-console.log(BigInt(9487547394578347985798347895479784597));
-console.log(BigInt(94875473));
+// console.log(BigInt(9487547394578347985798347895479784597));
+// console.log(BigInt(94875473));
 
-// Operations
-console.log(10000n + 10000n);
-console.log(839384798437597498758037n * 10000n);
+// // Operations
+// console.log(10000n + 10000n);
+// console.log(839384798437597498758037n * 10000n);
 
-const huge = 8297598629597578925750n;
-const num = 23;
+// const huge = 8297598629597578925750n;
+// const num = 23;
 
-console.log(huge * BigInt(num));
+// console.log(huge * BigInt(num));
 
-// Exception
-console.log(20n > 15);
-console.log(20n === 20);
-console.log(typeof 20n);
-console.log(20n == '20');
+// // Exception
+// console.log(20n > 15);
+// console.log(20n === 20);
+// console.log(typeof 20n);
+// console.log(20n == '20');
 
-console.log(huge + ' is REALLY big!!!');
+// console.log(huge + ' is REALLY big!!!');
 
-// Divisions
-console.log(10n / 3n);
-console.log(10 / 3);
+// // Divisions
+// console.log(10n / 3n);
+// console.log(10 / 3);
 
 /////////////////////////////////////////////////
 // Numeric Separators
