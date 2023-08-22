@@ -259,21 +259,49 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 /////////////////////////////////////////////////
+// Working with BigInt
+console.log(9487547394578347985798347895479784597n);
+
+console.log(BigInt(9487547394578347985798347895479784597));
+console.log(BigInt(94875473));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(839384798437597498758037n * 10000n);
+
+const huge = 8297598629597578925750n;
+const num = 23;
+
+console.log(huge * BigInt(num));
+
+// Exception
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == '20');
+
+console.log(huge + ' is REALLY big!!!');
+
+// Divisions
+console.log(10n / 3n);
+console.log(10 / 3);
+
+/////////////////////////////////////////////////
 // Numeric Separators
-const diameter = 287_460_000_000;
-console.log(diameter);
+// const diameter = 287_460_000_000;
+// console.log(diameter);
 
-const priceCents = 345_99;
-console.log(priceCents);
+// const priceCents = 345_99;
+// console.log(priceCents);
 
-const transferFee1 = 15_00;
-const transferFee2 = 1_500;
+// const transferFee1 = 15_00;
+// const transferFee2 = 1_500;
 
-const PI = 3.1415;
-console.log(PI);
+// const PI = 3.1415;
+// console.log(PI);
 
-console.log(Number('230_000'));
-console.log(parseInt('230_000'));
+// console.log(Number('230_000'));
+// console.log(parseInt('230_000'));
 
 /////////////////////////////////////////////////
 // Remainder Operator
