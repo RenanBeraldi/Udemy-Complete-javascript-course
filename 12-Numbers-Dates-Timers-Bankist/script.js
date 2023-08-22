@@ -259,25 +259,42 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 /////////////////////////////////////////////////
+// Numeric Separators
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const priceCents = 345_99;
+console.log(priceCents);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(Number('230_000'));
+console.log(parseInt('230_000'));
+
+/////////////////////////////////////////////////
 // Remainder Operator
-console.log(5 % 2);
-console.log(8 % 3);
+// console.log(5 % 2);
+// console.log(8 % 3);
 
-console.log(6 % 2);
+// console.log(6 % 2);
 
-console.log(7 % 2);
+// console.log(7 % 2);
 
-const IsEven = n => n % 2 === 0;
-console.log(IsEven(8));
-console.log(IsEven(23));
-console.log(IsEven(514));
+// const IsEven = n => n % 2 === 0;
+// console.log(IsEven(8));
+// console.log(IsEven(23));
+// console.log(IsEven(514));
 
-labelBalance.addEventListener('click', function () {
-  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
-    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
-    if (i % 3 === 0) row.style.backgroundColor = 'blue';
-  });
-});
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+//     if (i % 3 === 0) row.style.backgroundColor = 'blue';
+//   });
+// });
 
 /////////////////////////////////////////////////
 // Math and Rounding
