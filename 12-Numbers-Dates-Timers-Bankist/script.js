@@ -203,14 +203,41 @@ const updateUI = function (account) {
   calcDisplaySummary(account);
 };
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const minutes = String(Math.trunc(time / 60)).padStart(2, '0');
+    const seconds = String(time % 60).padStart(2, '0');
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${minutes}:${seconds}`;
+
+    // When 0 seconds, stop timer and log out user.
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+    // Decrease 1s
+    time--;
+  };
+  // Set time of the timer
+  let time = 120;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+};
+
 /////////////////////////////////////////////////
 // Event Handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // Login
 btnLogin.addEventListener('click', function (e) {
@@ -246,6 +273,10 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -277,6 +308,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset the timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -300,6 +335,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset the timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -341,19 +380,19 @@ btnSort.addEventListener('click', function (e) {
 // Timers: setTimeout and setInterval
 
 // setTimeout
-const ingredients = ['olives', 'spinach'];
-const pizzaTimer = setTimeout(
-  (ing1, ing2) => console.log('Here is your pizza!'),
-  3000,
-  ...ingredients
-);
-if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+// const ingredients = ['olives', 'spinach'];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => console.log('Here is your pizza!'),
+//   3000,
+//   ...ingredients
+// );
+// if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 
-// setInterval
-setInterval(function () {
-  const now = new Date();
-  console.log(now);
-}, 3000);
+// // setInterval
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 3000);
 
 /////////////////////////////////////////////////
 // Internationalizing Numbers (Intl)
