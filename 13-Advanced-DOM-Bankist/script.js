@@ -38,24 +38,50 @@ const section1 = document.querySelector('#section--1');
 
 bntScrollTo.addEventListener('click', function (e) {
   e.preventDefault();
-  const s1coords = section1.getBoundingClientRect();
-
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 //////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Event Propagation in practice
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
+
+  // Stop Propagation
+  // e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+});
+
+/////////////////////////////////////////////////
 // Type of Events and Event Handlers
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-const alertH1 = function (e) {
-  alert('AddEventListener: Great! You are reading the heading');
-};
+// const alertH1 = function (e) {
+//   alert('AddEventListener: Great! You are reading the heading');
+// };
 
-h1.addEventListener('mouseenter', alertH1);
+// h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
 // h1.onmouseenter = function (e) {
 //   alert('onmouseenter: Great! You are reading the heading');
