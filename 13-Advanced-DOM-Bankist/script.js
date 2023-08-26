@@ -32,82 +32,92 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// Implementing Smooth Scrolling
+const bntScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+bntScrollTo.addEventListener('click', function (e) {
+  e.preventDefault();
+  const s1coords = section1.getBoundingClientRect();
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
 //////////////////////////////////////////////////
 
 // Selecting Elements
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 
-const header = document.querySelector('.header');
-const allSections = document.querySelectorAll('.section');
+// const header = document.querySelector('.header');
+// const allSections = document.querySelectorAll('.section');
 
-document.getElementById('section--1');
+// document.getElementById('section--1');
 
-const allButtons = document.getElementsByTagName('button');
-console.log(allButtons);
+// const allButtons = document.getElementsByTagName('button');
+// console.log(allButtons);
 
-console.log(document.getElementsByClassName('btn'));
+// console.log(document.getElementsByClassName('btn'));
 
-// Creating and Inserting Elements
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent =
-//   'We use cookies for improved functionality and analytics.';
-message.innerHTML =
-  'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+// // Creating and Inserting Elements
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent =
+// //   'We use cookies for improved functionality and analytics.';
+// message.innerHTML =
+//   'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
 
-// header.prepend(message);
-// header.append(message);
-// header.append(message.cloneNode(true));
+// // header.prepend(message);
+// // header.append(message);
+// // header.append(message.cloneNode(true));
 
-header.before(message);
-header.after(message);
+// header.before(message);
+// header.after(message);
 
-// Delete elements
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    message.remove();
-  });
+// // Delete elements
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', function () {
+//     message.remove();
+//   });
 
-// Styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
+// // Styles
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 
-// Attributes
-const logo = document.querySelector('.nav__logo');
-console.log(logo.alt);
-console.log(logo.className);
+// // Attributes
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt);
+// console.log(logo.className);
 
-logo.alt = 'Beautiful minimalist logo';
+// logo.alt = 'Beautiful minimalist logo';
 
-// Non-standard
-console.log(logo.designer);
-console.log(logo.getAttribute('designer'));
-logo.setAttribute('company', 'Bankist');
+// // Non-standard
+// console.log(logo.designer);
+// console.log(logo.getAttribute('designer'));
+// logo.setAttribute('company', 'Bankist');
 
-console.log(logo.src);
-console.log(logo.getAttribute('src'));
+// console.log(logo.src);
+// console.log(logo.getAttribute('src'));
 
-const link = document.querySelector('.nav__link--btn');
-console.log(link.href);
-console.log(link.getAttribute('href'));
+// const link = document.querySelector('.nav__link--btn');
+// console.log(link.href);
+// console.log(link.getAttribute('href'));
 
-// Data Attributes
-console.log(logo.dataset.versionNumber);
+// // Data Attributes
+// console.log(logo.dataset.versionNumber);
 
-// Classes
-logo.classList.add('c', 'j');
-logo.classList.remove('c', 'j');
-logo.classList.toggle('c');
-logo.classList.contains('c');
+// // Classes
+// logo.classList.add('c', 'j');
+// logo.classList.remove('c', 'j');
+// logo.classList.toggle('c');
+// logo.classList.contains('c');
 
-// DON'T USE
-logo.className = 'renan'; // overwrite all the other classes
-
+// // DON'T USE
+// logo.className = 'renan'; // overwrite all the other classes
